@@ -1,0 +1,15 @@
+{
+"KHR-F": "{#Control_L(Shift_L(v))}",
+"KWRA": "ya",
+"O": "oh",
+"PHR*UP": "{PLOVER:LOOKUP}",
+"PHROBGT": "{PLOVER:QUIT}",
+"PHROFBGS": "{PLOVER:FOCUS}",
+"PWUT": "but the",
+"SH-RS": "{#Home}{^}",
+"SR-FT": "{#End}{^}",
+"STPH-F": "{#Control_L(Shift_L(Left))}",
+"STPH-FP": "{#Shift_L(Left)}{^}",
+"STPH-L": "{#Control_L(Shift_L(Right))}",
+"STPH-PL": "{#Shift_L(Right)}{^}"
+}
