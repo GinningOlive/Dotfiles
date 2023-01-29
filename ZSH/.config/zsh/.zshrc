@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Stop weird glob error
+setopt nonomatch
+
 # Let lowercase match uppercase
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
@@ -109,7 +112,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Load zsh-syntax-highlighting; should be last.
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Enable powerlevel10k
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
@@ -117,6 +120,13 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
+# Enable ZVM
+source $HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
 # Alacritty stuff
 export TERMINAL='alacritty'
 export TERM="xterm-256color"
+
+# Enable fast-syntax-highlighting
+source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
