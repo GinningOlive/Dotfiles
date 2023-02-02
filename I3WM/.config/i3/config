@@ -21,8 +21,6 @@ bindsym $mod+e exec konsole -e ranger
 
 # TEMP AutoStart
 exec Barrier
-exec Discord
-exec "Fcitx 5"
 
 # rofi -show calc -modi calc -no-show-match -no-sort
 bindsym $mod+d exec --no-startup-id rofi -show drun
