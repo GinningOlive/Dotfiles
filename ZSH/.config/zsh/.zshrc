@@ -97,7 +97,8 @@ rangercd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
-bindkey -s '^o' 'rangercd\n'
+# bindkey -s '^o' 'rangercd\n'
+bindkey -s '^o' 'ranger\n'
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -131,3 +132,6 @@ export TERM="xterm-256color"
 
 # Enable fast-syntax-highlighting
 source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+# Added paths
+PATH="$HOME/.local/bin:$PATH"
