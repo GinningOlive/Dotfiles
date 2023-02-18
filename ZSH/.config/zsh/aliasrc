@@ -1,0 +1,39 @@
+#!/bin/sh
+
+alias ll="ls -l"
+alias la="ls -A"
+alias keydconfig="sudo vim /etc/keyd/default.conf"
+# alias at="alacritty-themes"
+alias at_clear_backups="rm ~/.config/alacritty/alacritty.yml.*"
+alias terminal_clock='while echo -en "$(date)\r"; do sleep 1; done'
+alias tclock='while echo -en "$(date)\r"; do sleep 1; done'
+alias click='while echo -en "$(date)\r"; do sleep 1; done'
+alias zrc="vim ~/.config/zsh/.zshrc"
+alias zhis="vim ~/.cache/zsh/history"
+alias arc="vim ~/.config/zsh/aliasrc"
+alias ayml="vim ~/.config/alacritty/alacritty.yml"
+alias vrc="vim ~/.vimrc"
+alias styli.sh="~/Downloads/from_source/styli.sh/styli.sh"
+alias gnext="~/Downloads/from_source/styli.sh/styli.sh -g -d ~/Pictures/Wallpapers"
+alias next="~/Downloads/from_source/styli.sh/styli.sh -d ~/Pictures/Wallpapers"
+alias i3config="vim ~/.config/i3/config"
+alias prc="vim .config/polybar/config.ini"
+alias pwd="pwd | xclip -sel clipboard"
+
+alias start_hidamari="nohup sh -x ~/Documents/start_hidamari.sh &"
+alias stop_hidamari="gnome-extensions enable WallpaperSwitcher@Rishu && flatpak kill io.github.jeffshee.Hidamari && next"
+alias kill_hidamari="stop_hidamari"
+
+# enable color support of ls and also add handy aliases
+
+if [ -x /usr/bin/dircolors ]
+then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
