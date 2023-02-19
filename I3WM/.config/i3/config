@@ -23,10 +23,11 @@ default_border pixel
 bindsym $mod+b border toggle
 # bindsym $mod+e exec alacritty -e ranger
 # bindsym $mod+e exec ~/Documents/Ranger-macro.sh
-# bindsym $mod+r exec nautilus
+# bindsym $mod+shift+e exec nautilus
 bindsym $mod+e exec alacritty -e ranger
 bindsym $mod+Shift+Escape exec alacritty -e htop
-bindsym $mod+Escape exec betterlockscreen -l
+bindsym $mod+Escape exec rofi -show power-menu -modi power-menu:rofi-power-menu
+# bindsym $mod+Escape exec ~/Documents/rofi-power-menu.sh
 bindsym $mod+o exec ~/Documents/picom-toggle.sh
 bindsym $mod+shift+s exec flameshot gui
 bindsym $mod+c exec gnome-calculator
@@ -239,7 +240,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
