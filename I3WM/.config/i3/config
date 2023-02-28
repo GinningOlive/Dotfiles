@@ -12,31 +12,33 @@ set $fm eDP-1
 set $sm HDMI-1
 gaps inner 7
 gaps outer 4
-for_window [class=:^.*:] border pixel 10
 smart_gaps on
 smart_borders on
 bindsym $mod+i exec alacritty -e ~/Documents/i3config-shortcut.sh
 bindsym $mod+Shift+Return exec firefox
 bindsym $mod+w exec flatpak run com.brave.Browser --password-store=gnome
 bindsym $mod+shift+w exec flatpak run com.obsproject.Studio
-default_border pixel
+default_border pixel 5
 bindsym $mod+b border toggle
 # bindsym $mod+e exec alacritty -e ranger
 # bindsym $mod+e exec ~/Documents/Ranger-macro.sh
-# bindsym $mod+shift+e exec nautilus
+bindsym $mod+shift+e exec nautilus
 bindsym $mod+e exec alacritty -e ranger
 bindsym $mod+Shift+Escape exec alacritty -e htop
 bindsym $mod+Escape exec rofi -show power-menu -modi power-menu:rofi-power-menu
 # bindsym $mod+Escape exec ~/Documents/rofi-power-menu.sh
+bindsym $mod+Shift+Tab exec ~/Documents/picom-toggle.sh
 bindsym $mod+o exec ~/Documents/picom-toggle.sh
-bindsym $mod+shift+s exec flameshot gui
+bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+c exec gnome-calculator
 bindsym $mod+r exec betterlockscreen -u ~/Pictures/Wallpapers/
+# bindsym $mod+a exec dunstctl history-pop
 # exec_always xdotool behave_screen_edge top-right exec ~/.config/polybar/launch.sh
 # exec_always xdotool behave_screen_edge bottom-right exec killall polybar
 # exec_always xdotool behave_screen_edge top-right exec ~/.config/polybar/hover.sh
 
 # autostart
+exec_always sxhkd
 exec yumex-dnf-updatechecker
 exec barrier
 exec fcitx5
@@ -44,7 +46,7 @@ exec Discord
 exec warpd
 exec kdeconnect-app
 exec_always autotiling
-exec_always ~/Documents/wallpaper-switcher.sh
+exec_always styli.sh -d ~/Pictures/Wallpapers
 # exec_always betterlockscreen -u ~/Pictures/lockscreen-wallpapers/
 # exec_always betterlockscreen -u ~/Pictures/Wallpapers/
 exec_always --no-startup-id ~/.config/polybar/launch.sh
@@ -53,6 +55,7 @@ exec_always xsetwacom set 'Wacom Intuos S Pad pad' MapToOutput $fm
 # GNOME STUFF
 exec gnome-settings-daemon
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 # Restore GNOME's settings
 exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
 # Fix a bug in gnome-settings-daemon: http://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
@@ -280,3 +283,15 @@ bindsym $mod+control+l resize grow width 10 px or 10 ppt
 # 	mode invisible
 #       status_command i3status
 # }
+
+
+# Colors
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
