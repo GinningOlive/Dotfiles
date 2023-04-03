@@ -13,16 +13,27 @@ alias zhis="vim ~/.cache/zsh/history"
 alias arc="vim ~/.config/zsh/aliasrc"
 alias ayml="vim ~/.config/alacritty/alacritty.yml"
 alias vrc="vim ~/.vimrc"
-alias styli.sh="~/Downloads/from_source/styli.sh/styli.sh"
-alias gnext="~/Downloads/from_source/styli.sh/styli.sh -g -d ~/Pictures/Wallpapers"
-alias next="~/Downloads/from_source/styli.sh/styli.sh -d ~/Pictures/Wallpapers"
+alias prc="vim ~/.config/polybar/config.ini"
+alias src="vim ~/.config/sxhkd/sxhkdrc"
+alias piconf="vim ~/.config/picom.conf"
+alias gnext="styli.sh -g -d ~/Pictures/Wallpapers"
+alias next="styli.sh -d ~/Pictures/Wallpapers"
 alias i3config="vim ~/.config/i3/config"
-alias prc="vim .config/polybar/config.ini"
 alias pwd="pwd | xclip -sel clipboard"
 
+# Animated backgrounds in gnome
 alias start_hidamari="nohup sh -x ~/Documents/start_hidamari.sh &"
 alias stop_hidamari="gnome-extensions enable WallpaperSwitcher@Rishu && flatpak kill io.github.jeffshee.Hidamari && next"
 alias kill_hidamari="stop_hidamari"
+
+# Animated backgrounds in i3
+alias animated-background='back4.sh 0.01 $(fzf --query "Pictures/gifs/converted/")'
+
+# Flatpaks
+alias brave="flatpak run com.brave.Browser"
+
+# List installed AUR packages
+alias aur-list="pacman -Qem | expac --timefmt='%F %T' '%n %v %l' - | sort -k3"
 
 # enable color support of ls and also add handy aliases
 
