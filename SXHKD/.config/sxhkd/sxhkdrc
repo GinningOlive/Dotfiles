@@ -1,0 +1,84 @@
+#Key bindings
+super + {_,shift} + Return
+	{alacritty,firefox}
+
+super + {_,shift} + q
+	i3-msg {fullscreen toggle,kill}
+
+super + {_,shift} + f
+	i3-msg {floating toggle,focus mode_toggle}
+
+super + {d,Tab}
+	rofi -show-icons -show {drun,window}
+
+super + Escape
+	rofi -show power-menu -modi power-menu:rofi-power-menu
+
+super + {_,shift} + w
+	flatpak run {com.brave.Browser --password-store=gnome,com.obsproject.Studio}
+
+super + e
+	alacritty -e ranger
+
+super + shift + e
+	nautilus
+
+control + shift + Escape
+	alacritty -e htop
+
+super + {o,shift +Tab}
+	~/Documents/picom-toggle.sh
+
+super + shift + s
+	flameshot gui
+
+super + c
+	gnome-calculator
+
+super + r
+	styli.sh -d ~/Pictures/Wallpapers
+
+super + {_,shift} + a
+	dunstctl {history-pop,close-all}
+
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10% && pactl set-sink-mute @DEFAULT_SINK@ off
+
+XF86Audio{_,Mic}Mute 
+	pactl set-{sink,source}-mute @DEFAULT_SINK@ toggle
+
+XF86Audio{Play,Next,Prev}
+	playerctl {play-pause,next,previous}
+
+super + bracket{right,left}
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10% && pactl set-sink-mute @DEFAULT_SINK@ off
+
+super + {BackSpace,backslash}
+	{pactl set-sink-mute @DEFAULT_SINK@ toggle,playerctl play-pause}
+
+super + shift + bracket{right,left}
+	playerctl {next,previous}
+
+XF86MonBrightness{Up,Down}
+	brightnessctl set {+5%,5%-}
+
+super + {equal,minus}
+	brightnessctl set {+5%,5%-}
+
+super + shift + control + {h,l}
+	i3-msg gaps outer all {minus,plus} 5
+
+super + shift + control + {j,k}
+	i3-msg gaps inner all {minus,plus} 5
+
+super + control + {h,l}
+	i3-msg resize {shrink,grow} width 10 px or 10 ppt
+
+super + control + {k,j}
+	i3-msg resize {shrink,grow} height 10 px or 10 ppt
+
+super + {_,shift} + {h,j,k,l}
+	i3-msg {focus,move} {left,down,up,right}
+
+super + {_,shift} + {1-7,0,8,9}
+	i3-msg {_,move container to} workspace {1-7,8,9,10}
