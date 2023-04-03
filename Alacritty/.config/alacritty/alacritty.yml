@@ -18,7 +18,7 @@ window:
   #
   # Specified in floating number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.50
+  opacity: 1.00
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
