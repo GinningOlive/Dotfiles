@@ -1,5 +1,5 @@
 # Dotfiles
-Inspiration from `https://github.com/ChristianChiarulli/Machfiles` and `https://www.youtube.com/watch?v=90xMTKml9O0`.
+Inspiration from `https://github.com/ChristianChiarulli/Machfiles` and `https://youtu.be/90xMTKml9O0`.
 
 You will need `git` and GNU `stow`.
 
