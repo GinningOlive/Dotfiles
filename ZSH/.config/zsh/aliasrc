@@ -21,6 +21,9 @@ alias next="styli.sh -d ~/Pictures/Wallpapers"
 alias i3config="vim ~/.config/i3/config"
 alias pwd="pwd | xclip -sel clipboard"
 
+# Betterlockscreen
+alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog /home/ginningolive/.cache/betterlockscreen/1-eDP-1/resize.png && eog /home/ginningolive/.cache/betterlockscreen/2-HDMI-1/resize.png"
+
 # Animated backgrounds in gnome
 alias start_hidamari="nohup sh -x ~/Documents/start_hidamari.sh &"
 alias stop_hidamari="gnome-extensions enable WallpaperSwitcher@Rishu && flatpak kill io.github.jeffshee.Hidamari && next"
@@ -34,6 +37,9 @@ alias brave="flatpak run com.brave.Browser"
 
 # List installed AUR packages
 alias aur-list="pacman -Qem | expac --timefmt='%F %T' '%n %v %l' - | sort -k3"
+
+# nvbn/thefuck
+eval $(thefuck --alias)
 
 # enable color support of ls and also add handy aliases
 
