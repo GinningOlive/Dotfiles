@@ -13,7 +13,7 @@ vmap kj <Esc>
 cmap jk <Esc>
 cmap kj <Esc>
 nnoremap q :q <Enter>
-nnoremap qq :q! <Enter>
+nnoremap Q :q! <Enter>
 nnoremap zz :wq <Enter>
 
 " VCoolor
