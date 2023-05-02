@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo cp ./default.conf /etc/keyd/
+sudo cp ./KeydConfig /etc/keyd/default.conf
