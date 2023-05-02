@@ -11,6 +11,12 @@ super + {_,shift} + f
 super + {d,Tab}
 	rofi -show-icons -show {drun,window}
 
+super + p
+	~/Documents/select-display.sh
+
+super + F1
+	~/Documents/animated-wallpaper-rofi.sh
+
 super + Escape
 	rofi -show power-menu -modi power-menu:rofi-power-menu
 
@@ -24,7 +30,7 @@ super + shift + e
 	nautilus
 
 control + shift + Escape
-	alacritty -e htop
+	alacritty -e btop
 
 super + {o,shift +Tab}
 	~/Documents/picom-toggle.sh
@@ -80,5 +86,11 @@ super + control + {k,j}
 super + {_,shift} + {h,j,k,l}
 	i3-msg {focus,move} {left,down,up,right}
 
-super + {_,shift} + {1-7,0,8,9}
-	i3-msg {_,move container to} workspace {1-7,8,9,10}
+# super + {_,shift} + {1-7,0,9,8}
+	# i3-msg {_,move container to} workspace {1-7,8,9,10}
+
+super + {_,shift} + {1-9,0}
+	i3-msg {_,move container to} workspace {1-9,10}
+
+alt + {_,shift} + {1-9,0}
+	i3-msg {_,move container to} workspace {A-I,J}
