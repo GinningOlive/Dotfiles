@@ -6,8 +6,6 @@
 #
 
 # User Added
-exec_always xrandr --output eDP-1 --primary --mode 1366x768 --pos 1280x0 --rotate normal --output HDMI-1 --mode 1280x720 --pos 0x48 --rotate normal
-# exec_always xrandr --output eDP-1 --primary --mode 1366x768 --pos 1280x0 --rotate normal
 set $fm eDP-1
 set $sm HDMI-1
 gaps inner 7
@@ -24,6 +22,7 @@ bindsym $mod+b border toggle
 
 # autostart
 # exec ulauncher
+exec xrandr --output eDP-1 --primary --mode 1366x768 --pos 1280x0 --rotate normal --output HDMI-1 --mode 1280x720 --pos 0x48 --rotate normal
 exec_always pkill sxhkd ; sxhkd &
 exec yumex-dnf-updatechecker
 exec barrier
@@ -74,7 +73,7 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -119,16 +118,38 @@ bindsym $mod+x layout toggle split
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 
+# workspace 1 output $fm
+# workspace 2 output $fm
+# workspace 3 output $fm
+# workspace 4 output $fm
+# workspace 5 output $sm
+# workspace 6 output $sm
+# workspace 7 output $sm
+# workspace 8 output $sm
+# workspace 9 output $fm
+# workspace 10 output $sm
+
 workspace 1 output $fm
 workspace 2 output $fm
 workspace 3 output $fm
 workspace 4 output $fm
-workspace 5 output $sm
-workspace 6 output $sm
-workspace 7 output $sm
-workspace 8 output $sm
+workspace 5 output $fm
+workspace 6 output $fm
+workspace 7 output $fm
+workspace 8 output $fm
 workspace 9 output $fm
-workspace 10 output $sm
+workspace 10 output $fm
+
+workspace A output $sm
+workspace B output $sm
+workspace C output $sm
+workspace D output $sm
+workspace E output $sm
+workspace F output $sm
+workspace G output $sm
+workspace H output $sm
+workspace I output $sm
+workspace J output $sm
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
