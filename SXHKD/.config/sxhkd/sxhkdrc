@@ -12,28 +12,31 @@ super + {d,Tab}
 	rofi -show-icons -show {drun,window}
 
 super + p
-	~/Documents/select-display.sh
+	select-display.sh
 
 super + F1
-	~/Documents/animated-wallpaper-rofi.sh
+	animated-wallpaper-rofi.sh
 
 super + Escape
 	rofi -show power-menu -modi power-menu:rofi-power-menu
 
+# super + {_,shift} + w
+	# flatpak run {com.brave.Browser --password-store=gnome,com.obsproject.Studio}
+
 super + {_,shift} + w
-	flatpak run {com.brave.Browser --password-store=gnome,com.obsproject.Studio}
+	flatpak run {com.brave.Browser,com.obsproject.Studio}
 
 super + e
 	alacritty -e ranger
 
 super + shift + e
-	nautilus
+	thunar
 
 control + shift + Escape
 	alacritty -e btop
 
-super + {o,shift +Tab}
-	~/Documents/picom-toggle.sh
+super + {o,shift + Tab}
+	picom-toggle.sh
 
 super + shift + s
 	flameshot gui
