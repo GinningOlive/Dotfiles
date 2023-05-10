@@ -20,6 +20,7 @@ alias gnext="styli.sh -g -d ~/Pictures/Wallpapers"
 alias next="styli.sh -d ~/Pictures/Wallpapers"
 alias i3config="vim ~/.config/i3/config"
 alias pwd="pwd | xclip -sel clipboard"
+alias windowclass="xprop | grep WM_CLASS"
 
 # Betterlockscreen
 alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog /home/ginningolive/.cache/betterlockscreen/1-eDP-1/resize.png && eog /home/ginningolive/.cache/betterlockscreen/2-HDMI-1/resize.png"
