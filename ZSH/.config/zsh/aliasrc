@@ -21,6 +21,7 @@ alias next="styli.sh -d ~/Pictures/Wallpapers"
 alias i3config="vim ~/.config/i3/config"
 alias pwd="pwd | xclip -sel clipboard"
 alias windowclass="xprop | grep WM_CLASS"
+alias wallpaper="feh --bg-scale"
 
 # Betterlockscreen
 alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog /home/ginningolive/.cache/betterlockscreen/1-eDP-1/resize.png && eog /home/ginningolive/.cache/betterlockscreen/2-HDMI-1/resize.png"
@@ -40,7 +41,8 @@ alias brave="flatpak run com.brave.Browser"
 alias aur-list="pacman -Qem | expac --timefmt='%F %T' '%n %v %l' - | sort -k3"
 
 # nvbn/thefuck
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
+alias fuck="echo 'disabled to make tty startup faster'"
 
 # enable color support of ls and also add handy aliases
 
