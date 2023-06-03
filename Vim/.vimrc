@@ -14,7 +14,7 @@ cmap jk <Esc>
 cmap kj <Esc>
 nnoremap q :q <Enter>
 nnoremap Q :q! <Enter>
-nnoremap zz :wq <Enter>
+nnoremap zz :w <Enter>
 
 " VCoolor
 execute "set <A-c>=\ec"
