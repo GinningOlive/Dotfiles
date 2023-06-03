@@ -26,6 +26,8 @@ mappings:
   title: Discord
 - class: Thunar
   title: Thunar
+- class: Blender
+  title: Blender
 - class: org.gnome.Nautilus
 - class: org.gnome.Nautilus
   title: Nautilus
