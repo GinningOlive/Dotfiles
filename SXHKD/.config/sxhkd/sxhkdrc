@@ -20,11 +20,8 @@ super + F1
 super + Escape
 	rofi -show power-menu -modi power-menu:rofi-power-menu
 
-# super + {_,shift} + w
-	# flatpak run {com.brave.Browser --password-store=gnome,com.obsproject.Studio}
-
 super + {_,shift} + w
-	flatpak run {com.brave.Browser,com.obsproject.Studio}
+	flatpak run {com.brave.Browser,com.parsecgaming.parsec}
 
 super + e
 	alacritty -e ranger
@@ -69,10 +66,13 @@ super + shift + bracket{right,left}
 	playerctl {next,previous}
 
 XF86MonBrightness{Up,Down}
-	brightnessctl set {+5%,5%-}
+	brightnessctl set {+10%,10%-}
 
 super + {equal,minus}
 	brightnessctl set {+5%,5%-}
+
+super + shift + {equal,minus}
+	brightnessctl set {+10%,10%-}
 
 super + shift + control + {h,l}
 	i3-msg gaps outer all {minus,plus} 5
@@ -97,3 +97,9 @@ super + {_,shift} + {1-9,0}
 
 alt + {_,shift} + {1-9,0}
 	i3-msg {_,move container to} workspace {A-I,J}
+
+super + v
+	i3-msg border toggle
+
+super + b
+	~/.config/polybar/scripts/traycollapse
