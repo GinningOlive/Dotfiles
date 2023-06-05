@@ -24,7 +24,7 @@ alias windowclass="xprop | grep WM_CLASS"
 alias wallpaper="feh --bg-scale"
 
 # Betterlockscreen
-alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog /home/ginningolive/.cache/betterlockscreen/1-eDP-1/resize.png && eog /home/ginningolive/.cache/betterlockscreen/2-HDMI-1/resize.png"
+alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog ~/.cache/betterlockscreen/1-eDP-1/resize.png & ; eog ~/.cache/betterlockscreen/2-HDMI-1/resize.png"
 
 # Animated backgrounds in gnome
 alias start_hidamari="nohup sh -x ~/Documents/start_hidamari.sh &"
