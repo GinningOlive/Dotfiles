@@ -45,7 +45,7 @@ mappings:
   # if this is enabled, the native title is shown,
   # as well as the mapped title.
   # e.g. Kitty [~/]
-  show_native_title: true
+  show_native_title: false
 
 # you can customize the separators for the
 # 'show_native_title' titles. the conf below would show:
