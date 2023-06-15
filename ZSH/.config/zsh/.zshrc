@@ -42,8 +42,8 @@ setopt NO_MULTIOS
 setopt NO_FLOW_CONTROL
 
 # Use vim in ranger
-export VISUAL=vim;
-export EDITOR=vim;
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -121,9 +121,8 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 source $HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
-# Alacritty stuff
-export TERMINAL='alacritty'
-export TERM="xterm-256color"
+# Export Terminal
+export TERMINAL='Kitty'
 
 # Enable fast-syntax-highlighting
 source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
