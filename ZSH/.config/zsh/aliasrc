@@ -13,7 +13,6 @@ alias keydconfig="sudo vim /etc/keyd/default.conf"
 alias at_clear_backups="rm ~/.config/alacritty/alacritty.yml.*"
 alias terminal_clock='while echo -en "$(date)\r"; do sleep 1; done'
 alias tclock='while echo -en "$(date)\r"; do sleep 1; done'
-alias click='while echo -en "$(date)\r"; do sleep 1; done'
 alias zrc="vim ~/.config/zsh/.zshrc"
 alias zhis="vim ~/.cache/zsh/history"
 alias arc="vim ~/.config/zsh/aliasrc"
