@@ -3,5 +3,5 @@
 chmod +x ./keyd.sh
 ./Keyd.sh
 stow '*/'
-rm readme.md
+rm README.md
 mv ~/dotfiles ~/Dotfiles
