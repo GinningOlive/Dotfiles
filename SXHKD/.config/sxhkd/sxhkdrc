@@ -5,7 +5,7 @@
 # |___/_/\_\_| |_|_|\_\__,_|_|  \___|
 
 super + {_,shift} + Return
-	{alacritty,firefox}
+	{env GLFW_IM_MODULE=ibus /usr/bin/kitty,firefox}
 
 super + {_,shift} + q
 	i3-msg {fullscreen toggle,kill}
@@ -28,14 +28,17 @@ super + Escape
 super + {_,shift} + w
 	flatpak run {com.brave.Browser,com.parsecgaming.parsec}
 
-super + e
-	alacritty -e ranger
+super + {_,shift} + e
+	{thunar,nautilus}
 
-super + shift + e
+super + e
 	thunar
 
+super + shift + e
+	nautilus
+
 control + shift + Escape
-	alacritty -e btop
+	kitty -e btop
 
 super + {o,shift + Tab}
 	picom-toggle.sh
