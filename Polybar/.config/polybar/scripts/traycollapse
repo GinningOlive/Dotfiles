@@ -6,7 +6,7 @@ then
 else
     stalonetray -c ~/.config/stalonetray/.stalonetrayrc &
     xdotool sleep 0.1
-    xdotool getactivewindow windowmove 2615 50
+    xdotool getactivewindow windowmove 3810 48
     xdotool sleep 8
     killall stalonetray
 fi
