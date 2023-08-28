@@ -11,7 +11,7 @@ gaps outer 1
 smart_gaps on
 smart_borders on
 default_border pixel 4
-bindsym $mod+i exec alacritty -e ~/.local/bin/i3config-shortcut.sh
+# bindsym $mod+i exec alacritty -e ~/.local/bin/i3config-shortcut.sh
 # bindsym $mod+e exec ~/Documents/Ranger-macro.sh
 # exec_always xdotool behave_screen_edge top-right exec ~/.config/polybar/launch.sh
 # exec_always xdotool behave_screen_edge bottom-right exec killall polybar
@@ -19,18 +19,20 @@ bindsym $mod+i exec alacritty -e ~/.local/bin/i3config-shortcut.sh
 
 # autostart
 # exec ulauncher
-exec xrandr --output eDP-1 --primary --mode 1366x768 --pos 1280x0 --rotate normal --output HDMI-1 --mode 1280x720 --pos 0x48 --rotate normal
+exec ~/.screenlayout/Extend.sh
 exec_always pkill sxhkd ; sxhkd &
 exec yumex-dnf-updatechecker
 exec pkill xfce4-panel
 exec pkill barrier
+exec pkill xfsettingsd
 exec fcitx5
 exec picom -b --focus-exclude "x = 0 && y = 0 && override_redirect = true"
 assign [class="discord"]   A
 exec Discord
-exec barrier
+exec "i3-msg workspace 1"
+# exec barrier
 exec warpd
-exec kdeconnect-app
+# exec kdeconnect-app
 exec dunst
 exec_always autotiling
 exec styli.sh -d ~/Pictures/Wallpapers
