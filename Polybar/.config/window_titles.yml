@@ -29,8 +29,9 @@ mappings:
 - class: Blender
   title: Blender
 - class: org.gnome.Nautilus
-- class: org.gnome.Nautilus
   title: Nautilus
+- class: obs
+  title: OBS
 - class: Pcmanfm
   title: PCManFM
   icon: 
