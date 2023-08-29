@@ -31,12 +31,6 @@ super + {_,shift} + w
 super + {_,shift} + e
 	{thunar,nautilus}
 
-super + e
-	thunar
-
-super + shift + e
-	nautilus
-
 control + shift + Escape
 	kitty -e btop
 
@@ -47,7 +41,7 @@ super + shift + s
 	flameshot gui
 
 super + c
-	gnome-calculator
+	gpick -s -o | xclip -sel clipboard
 
 super + r
 	styli.sh -d ~/Pictures/Wallpapers
@@ -56,7 +50,7 @@ super + {_,shift} + a
 	dunstctl {history-pop,close-all}
 
 XF86Audio{Raise,Lower}Volume
-	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10% && pactl set-sink-mute @DEFAULT_SINK@ off
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5% && pactl set-sink-mute @DEFAULT_SINK@ off
 
 XF86Audio{_,Mic}Mute 
 	pactl set-{sink,source}-mute @DEFAULT_SINK@ toggle
@@ -65,7 +59,7 @@ XF86Audio{Play,Next,Prev}
 	playerctl {play-pause,next,previous}
 
 super + bracket{right,left}
-	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10% && pactl set-sink-mute @DEFAULT_SINK@ off
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5% && pactl set-sink-mute @DEFAULT_SINK@ off
 
 super + {BackSpace,backslash}
 	{pactl set-sink-mute @DEFAULT_SINK@ toggle,playerctl play-pause}
