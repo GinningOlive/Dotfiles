@@ -28,6 +28,8 @@ alias i3config="vim ~/.config/i3/config"
 alias pwd="pwd | xclip -sel clipboard"
 alias windowclass="xprop | grep WM_CLASS"
 alias wallpaper="feh --bg-scale"
+alias kdiff="kitty +kitten diff"
+alias mp="mousepad"
 
 # Betterlockscreen
 alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog ~/.cache/betterlockscreen/1-eDP-1/resize.png & ; eog ~/.cache/betterlockscreen/2-HDMI-1/resize.png"
