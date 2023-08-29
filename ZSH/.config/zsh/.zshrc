@@ -129,3 +129,7 @@ source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Added paths
 PATH="$HOME/.local/bin:$PATH"
+
+plugins=(
+ autojump
+)
