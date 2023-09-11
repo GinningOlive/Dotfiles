@@ -19,7 +19,7 @@ default_border pixel 4
 
 # autostart
 # exec ulauncher
-exec ~/.screenlayout/Extend.sh
+exec ~/.screenlayout/eDP-1.sh
 exec_always pkill sxhkd ; sxhkd &
 exec yumex-dnf-updatechecker
 exec pkill xfce4-panel
@@ -30,7 +30,7 @@ exec picom -b --focus-exclude "x = 0 && y = 0 && override_redirect = true"
 assign [class="discord"]   A
 exec Discord
 exec "i3-msg workspace 1"
-# exec barrier
+exec barrier
 exec warpd
 # exec kdeconnect-app
 exec dunst
@@ -42,6 +42,8 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always xsetwacom set 'Wacom Intuos S Pen stylus' MapToOutput $fm
 exec_always xsetwacom set 'Wacom Intuos S Pad pad' MapToOutput $fm
 exec_always xinput map-to-output "ELAN Touchscreen" $fm
+# Hot corners
+# exec hotcorner-tr &
 
 # rofi -show calc -modi calc -no-show-match -no-sort
 
@@ -105,11 +107,6 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+t exec i3-sensible-terminal
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+z layout tabbed
-bindsym $mod+x layout toggle split
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
