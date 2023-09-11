@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xdotool behave_screen_edge top-right \
+exec ~/.config/polybar/polybar-toggle.sh
