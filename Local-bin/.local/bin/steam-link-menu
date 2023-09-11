@@ -1,0 +1,19 @@
+#!/bin/sh
+
+choices="1\n2\n3\n4\ns1\ns2\ns3\ns4\nsq\nf\nw"
+
+chosen=$(echo -e "$choices" | rofi -dmenu)
+
+case "$chosen" in
+	1) i3-msg workspace 1 ;;
+	2) i3-msg workspace 2 ;;
+	3) i3-msg workspace 3 ;;
+	4) i3-msg workspace 4 ;;
+	s1) i3-msg move container to workspace 1 ;;
+	s2) i3-msg move container to workspace 2 ;;
+	s3) i3-msg move container to workspace 3 ;;
+	s4) i3-msg move container to workspace 4 ;;
+	sq) i3-msg kill ;;
+	f) i3-msg floating toggle ;;
+	w) flatpak run com.brave.Browser ;;
+esac
