@@ -26,7 +26,7 @@ super + Escape
 	rofi -show power-menu -modi power-menu:rofi-power-menu
 
 super + {_,shift} + w
-	flatpak run {com.brave.Browser,com.parsecgaming.parsec}
+	flatpak run {com.brave.Browser,com.obsproject.Studio}
 
 super + {_,shift} + e
 	{thunar,nautilus}
@@ -34,11 +34,20 @@ super + {_,shift} + e
 control + shift + Escape
 	kitty -e btop
 
-super + {o,shift + Tab}
+super + shift + Tab
 	picom-toggle.sh
+
+super + s;{s,t}
+	i3-msg layout {stacking,tabbed}
+
+super + x
+	i3-msg layout toggle split
 
 super + shift + s
 	flameshot gui
+
+super + z
+	~/.config/polybar/polybar-toggle.sh
 
 super + c
 	gpick -s -o | xclip -sel clipboard
@@ -50,7 +59,7 @@ super + {_,shift} + a
 	dunstctl {history-pop,close-all}
 
 XF86Audio{Raise,Lower}Volume
-	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5% && pactl set-sink-mute @DEFAULT_SINK@ off
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5% && pactl set-sink-mute @DEFAULT_SINK@ off && pactl set-source-volume 0 25%
 
 XF86Audio{_,Mic}Mute 
 	pactl set-{sink,source}-mute @DEFAULT_SINK@ toggle
@@ -105,3 +114,6 @@ super + v
 
 super + b
 	~/.config/polybar/scripts/traycollapse
+
+super + m
+	steam-link-menu
