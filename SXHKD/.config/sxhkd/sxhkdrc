@@ -52,8 +52,11 @@ super + z
 super + c
 	gpick -s -o | xclip -sel clipboard
 
+# super + r
+	# styli.sh -d ~/Pictures/Wallpapers
+
 super + r
-	styli.sh -d ~/Pictures/Wallpapers
+	wal-tile-feh Pictures/Wallpapers
 
 super + {_,shift} + a
 	dunstctl {history-pop,close-all}
@@ -115,5 +118,14 @@ super + v
 super + b
 	~/.config/polybar/scripts/traycollapse
 
-super + m
+{super,alt} + m
 	steam-link-menu
+
+super + alt + {h,j,k,l}
+	xdotool mousemove_relative {-- -10 0,0 10,0 -10,10 0}
+
+super + alt + shift + {h,j,k,l}
+	xdotool mousemove_relative {-- -200 0,0 200,0 -200,200 0}
+
+super + alt + {n,m,comma}
+	xdotool click {1,1,1}
