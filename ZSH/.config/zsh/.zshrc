@@ -130,6 +130,10 @@ source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 # Added paths
 PATH="$HOME/.local/bin:$PATH"
 
+# Autojump or j
 plugins=(
  autojump
 )
+
+# Pywal
+(cat ~/.cache/wal/sequences &)
