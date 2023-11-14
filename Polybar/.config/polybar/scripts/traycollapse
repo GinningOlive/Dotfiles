@@ -1,12 +1,20 @@
 #!/bin/bash
 
+OUTPUT=$(echo $(xrandr | grep connected) | wc --words)
+
 if pgrep -x "stalonetray" > /dev/null
 then
     killall stalonetray
 else
     stalonetray -c ~/.config/stalonetray/.stalonetrayrc &
     xdotool sleep 0.1
-    xdotool getactivewindow windowmove 3810 48
-    xdotool sleep 8
-    killall stalonetray
+    if [ ${OUTPUT} -eq 29 ]; then
+       xdotool getactivewindow windowmove 3810 48
+       xdotool sleep 8
+       killall stalonetray
+    else
+       xdotool getactivewindow windowmove 1888 48
+       xdotool sleep 8
+       killall stalonetray
+    fi
 fi
