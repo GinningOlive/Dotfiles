@@ -17,37 +17,52 @@ default_border pixel 4
 # exec_always xdotool behave_screen_edge bottom-right exec killall polybar
 # exec_always xdotool behave_screen_edge top-right exec ~/.config/polybar/hover.sh
 
-# autostart
-# exec ulauncher
+# Window rules
+assign [class="Brave-browser" instance="crx_pjibgclleladliembfgfagdaldikeohf"]   3
+assign [class="parsecd"]   4
+assign [class="discord"]   11:一
+assign [class="Plover"]   11:一
+assign [class="qpwgraph"]   12:二
+assign [class="obs"]   13:三
+assign [class="steam"]   14:四
+
+# SynthV
+for_window [class="Synthesizer V Studio Basic" title="Edit Tempo Marker"] floating enable
+for_window [class="Synthesizer V Studio Basic" title="Edit Time Signature"] floating enable
+# for_window [class="Synthesizer V Studio Basic" title!="Synthesizer V Studio Basic"] floating enable
+
+# Autostart
+
+# exec Discord
+# exec barrier
+# exec opentabletdriver
+# exec kdeconnect-app
+# exec yumex-dnf-updatechecker
+
 exec ~/.screenlayout/eDP-1.sh
-exec_always pkill sxhkd ; sxhkd &
-exec yumex-dnf-updatechecker
 exec pkill xfce4-panel
 exec pkill barrier
 exec pkill xfsettingsd
 exec fcitx5
-exec picom -b --focus-exclude "x = 0 && y = 0 && override_redirect = true"
-assign [class="discord"]   A
-assign [class="Plover"]   A
-assign [class="obs"]   D
-exec Discord
-exec "i3-msg workspace 1"
-exec barrier
-exec warpd
-exec opentabletdriver
-# exec kdeconnect-app
 exec dunst
+exec_always pkill sxhkd ; sxhkd &
+exec_always xinput enable "ETPS/2 Elantech Touchpad"
+exec_always xinput enable "G604 LIGHTSPEED Mouse"
+exec_always xinput disable "Wireless Controller Touchpad"
 exec_always autotiling
-# exec styli.sh -d ~/Pictures/Wallpapers
-exec wal-tile-feh Pictures/Wallpapers
-# exec_always betterlockscreen -u ~/Pictures/lockscreen-wallpapers/
-# exec_always betterlockscreen -u ~/Pictures/Wallpapers/
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always xsetwacom set 'Wacom Intuos S Pen stylus' MapToOutput $fm
 exec_always xsetwacom set 'Wacom Intuos S Pad pad' MapToOutput $fm
 exec_always xinput map-to-output "ELAN Touchscreen" $fm
+# exec ulauncher
+# exec warpd
+# exec picom -b --focus-exclude "x = 0 && y = 0 && override_redirect = true"
 # Hot corners
 # exec hotcorner-tr &
+# exec styli.sh -d ~/Pictures/Wallpapers
+# exec wal-tile-feh Pictures/Wallpapers
+# exec_always betterlockscreen -u ~/Pictures/lockscreen-wallpapers/
+# exec_always betterlockscreen -u ~/Pictures/Wallpapers/
 
 # rofi -show calc -modi calc -no-show-match -no-sort
 
@@ -83,28 +98,6 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-# bindsym XF86AudioPlay exec playerctl play-pause
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
-# bindsym $mod+bracketright exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-# bindsym $mod+bracketleft exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-# bindsym $mod+BackSpace exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym $mod+backslash exec playerctl play-pause
-# bindsym $mod+shift+bracketright exec playerctl next
-# bindsym $mod+shift+bracketleft exec playerctl previous
-
-# Screen brightness controls
-# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 
-
-# bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-# bindsym $mod+equal exec --no-startup-id brightnessctl set +5%
-# bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
-# bindsym $mod+minus exec --no-startup-id brightnessctl set 5%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -137,16 +130,25 @@ workspace 8 output $fm
 workspace 9 output $fm
 workspace 10 output $fm
 
-workspace A output $sm
-workspace B output $sm
-workspace C output $sm
-workspace D output $sm
-workspace E output $sm
-workspace F output $sm
-workspace G output $sm
-workspace H output $sm
-workspace I output $sm
-workspace J output $sm
+workspace 11:一 output $sm
+workspace 12:二 output $sm
+workspace 13:三 output $sm
+workspace 14:四 output $sm
+workspace 15:五 output $sm
+workspace 16:六 output $sm
+workspace 17:七 output $sm
+workspace 18:八 output $sm
+workspace 19:九 output $sm
+workspace 20:十 output $sm
+
+bindsym mod1+1 workspace 11:一
+bindsym mod1+2 workspace 12:二
+bindsym mod1+3 workspace 13:三
+bindsym mod1+4 workspace 14:四
+bindsym mod1+Shift+1 move container to workspace 11:一
+bindsym mod1+Shift+2 move container to workspace 12:二
+bindsym mod1+Shift+3 move container to workspace 13:三
+bindsym mod1+Shift+4 move container to workspace 14:四
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
