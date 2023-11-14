@@ -25,8 +25,11 @@ super + F1
 super + Escape
 	rofi -show power-menu -modi power-menu:rofi-power-menu
 
+# super + {_,shift} + w
+	# flatpak run {com.brave.Browser,com.obsproject.Studio}
+
 super + {_,shift} + w
-	flatpak run {com.brave.Browser,com.obsproject.Studio}
+	{flatpak run com.brave.Browser, Discord}
 
 super + {_,shift} + e
 	{thunar,nautilus}
@@ -109,8 +112,8 @@ super + {_,shift} + {h,j,k,l}
 super + {_,shift} + {1-9,0}
 	i3-msg {_,move container to} workspace {1-9,10}
 
-alt + {_,shift} + {1-9,0}
-	i3-msg {_,move container to} workspace {A-I,J}
+# alt + {_,shift} + {1-9,0}
+	# i3-msg {_,move container to} workspace {A-I,J}
 
 super + v
 	i3-msg border toggle
