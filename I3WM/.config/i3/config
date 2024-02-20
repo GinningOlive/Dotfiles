@@ -18,18 +18,21 @@ default_border pixel 4
 # exec_always xdotool behave_screen_edge top-right exec ~/.config/polybar/hover.sh
 
 # Window rules
+assign [class="Brave-browser" instance="brave-browser"]   1
 assign [class="Brave-browser" instance="crx_pjibgclleladliembfgfagdaldikeohf"]   3
 assign [class="parsecd"]   4
 assign [class="discord"]   11:一
+assign [class="vesktop"]   11:一
 assign [class="Plover"]   11:一
 assign [class="qpwgraph"]   12:二
 assign [class="obs"]   13:三
-assign [class="steam"]   14:四
+# assign [class="steam"]   14:四
 
 # SynthV
+# for_window [class="Synthesizer V Studio Basic" title!="Synthesizer V Studio Basic"] floating enable
 for_window [class="Synthesizer V Studio Basic" title="Edit Tempo Marker"] floating enable
 for_window [class="Synthesizer V Studio Basic" title="Edit Time Signature"] floating enable
-# for_window [class="Synthesizer V Studio Basic" title!="Synthesizer V Studio Basic"] floating enable
+for_window [class="steam" title="Friends List"] floating enable
 
 # Autostart
 
@@ -45,14 +48,16 @@ exec pkill barrier
 exec pkill xfsettingsd
 exec fcitx5
 exec dunst
+exec wal-tile-feh $(tail -1 .fehbg | awk '{print $NF}' | cut -c 2- | rev | cut -c 2- | rev)
 exec_always pkill sxhkd ; sxhkd &
+exec ~/.local/bin/auto-enable-mouse
 exec_always xinput enable "ETPS/2 Elantech Touchpad"
-exec_always xinput enable "G604 LIGHTSPEED Mouse"
-exec_always xinput disable "Wireless Controller Touchpad"
+# exec_always xinput enable "G604 LIGHTSPEED Mouse"
+# exec_always xinput disable "Wireless Controller Touchpad"
+# exec_always xsetwacom set 'Wacom Intuos S Pen stylus' MapToOutput $fm
+# exec_always xsetwacom set 'Wacom Intuos S Pad pad' MapToOutput $fm
 exec_always autotiling
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always xsetwacom set 'Wacom Intuos S Pen stylus' MapToOutput $fm
-exec_always xsetwacom set 'Wacom Intuos S Pad pad' MapToOutput $fm
 exec_always xinput map-to-output "ELAN Touchscreen" $fm
 # exec ulauncher
 # exec warpd
