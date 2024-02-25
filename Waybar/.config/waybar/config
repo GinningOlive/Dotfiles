@@ -2,13 +2,13 @@
     // "layer": "top", // Waybar at top layer
     "output": "eDP-1",
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+    "height": 30, // Waybar height (to be removed for auto height) // Default 30
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    // "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media", "hyprland/window"],
-    "modules-center": [""],
-    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "memory", "cpu", "temperature", "backlight", "custom/system-nvidia-smi", "custom/gpu-temp", "keyboard-state", "battery", "battery#bat2", "clock", "tray"],
+    "modules-center": ["custom/cava"],
+    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "memory", "cpu", "temperature", "backlight", "custom/system-nvidia-smi", "custom/gpu-temp", "battery", "battery#bat2", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -109,7 +109,7 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
         "states": {
@@ -177,6 +177,9 @@
 	"format": "{}°C",
 	"exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader",
 	"interval": 10
+    },
+    "custom/cava": {
+	"exec": "python3 $HOME/.config/polybar/scripts/cava.py",
     }
 }
 
