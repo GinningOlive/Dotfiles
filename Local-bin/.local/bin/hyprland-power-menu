@@ -1,0 +1,10 @@
+#!/bin/sh
+
+choices="Suspend\nExit"
+
+chosen=$(echo -e "$choices" | rofi -dmenu)
+
+case "$chosen" in
+	Suspend) systemctl suspend && swaylock -f -c 000000 ;;
+	Exit) hyprctl dispatch exit ;;
+esac

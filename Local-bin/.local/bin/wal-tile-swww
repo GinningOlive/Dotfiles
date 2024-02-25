@@ -1,0 +1,7 @@
+#!/bin/sh
+
+killall swaybg
+wal -i "$@"
+# swaybg -c "$(sed -n '6p' ${HOME}/.cache/wal/colors)" &
+sleep 1
+swww img "$(< "${HOME}/.cache/wal/wal")" --resize fit

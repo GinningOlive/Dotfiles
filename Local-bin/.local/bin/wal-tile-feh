@@ -1,0 +1,4 @@
+#!/bin/sh
+
+wal -n -i "$@"
+feh --bg-max --image-bg "$(sed -n '6p' ${HOME}/.cache/wal/colors)" "$(< "${HOME}/.cache/wal/wal")"
