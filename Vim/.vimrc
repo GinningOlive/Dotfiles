@@ -8,13 +8,15 @@ set number
 set relativenumber
 set nocompatible
 set wrap
+set linebreak
 set encoding=utf-8
+set mouse=a
 
 let &t_SI = "\e[5 q"
 let &t_EI = "\e[1 q"
 imap jk <Esc>
 " imap kj <Esc>
-vmap jk <Esc>
+" vmap jk <Esc>
 " vmap kj <Esc>
 cmap jk <Esc>
 " cmap kj <Esc>
