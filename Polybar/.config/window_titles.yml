@@ -10,7 +10,7 @@ workspace:
   # turning this off will always show the last window title
   enabled: true 
   # icon and title mapping for the workspace placeholder
-  icon: ﬓ
+  # icon: ﬓ
   title: Desktop
 
 # mappings for each application
@@ -21,13 +21,17 @@ mappings:
   title: Firefox
   icon: 
 - class: brave-browser
-  title: Brave
-- class: discord
+  # icon: 
+  show_native_title: true
+- class: discord-unused
   title: Discord
-- class: Thunar
+  show_native_title: true
+- class: Thunar-unused
   title: Thunar
+  show_native_title: true
 - class: Blender
   title: Blender
+  show_native_title: true
 - class: org.gnome.Nautilus
   title: Nautilus
 - class: obs
@@ -46,7 +50,7 @@ mappings:
   # if this is enabled, the native title is shown,
   # as well as the mapped title.
   # e.g. Kitty [~/]
-  show_native_title: false
+  show_native_title: true
 
 # you can customize the separators for the
 # 'show_native_title' titles. the conf below would show:
