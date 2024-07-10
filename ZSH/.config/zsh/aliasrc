@@ -34,8 +34,14 @@ alias wallpaper="feh --bg-scale"
 alias kdiff="kitty +kitten diff"
 alias mp="mousepad"
 alias win="i3-msg move container to workspace 10 && i3-msg workspace 1"
-# alias loop="for n in {1..1000}; do %S && sleep 15; done"
+alias loop="for n in {1..1000}; do $@ ; sleep 15; done"
 alias autoclicker="for n in {1..10000}; do xdotool sleep 1 ; xdotool click 1 ; done"
+alias ydt='YDOTOOL_SOCKET="$HOME/.ydotool_socket" ydotool'
+alias ydt-start='sudo -b ydotoold --socket-path="$HOME/.ydotool_socket" --socket-own="$(id -u):$(id -g)"'
+alias ydt-search="cat /usr/include/linux/input-event-codes.h | grep -i"
+alias yarg="prime-run ~/.local/share/YARC/YARG\ Installs/stable/v0.12.3/YARG"
+alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
+alias job-resume="fg"
 
 # Betterlockscreen
 alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog ~/.cache/betterlockscreen/1-eDP-1/resize.png & ; eog ~/.cache/betterlockscreen/2-HDMI-1/resize.png"
@@ -71,3 +77,8 @@ then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# NixOS
+alias nix-switch="nixos-rebuild switch"
+alias nix-test="nixos-rebuild test"
+alias nix-edit="sudo vim /etc/nixos/configuration.nix"
