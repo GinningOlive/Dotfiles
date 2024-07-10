@@ -3,7 +3,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 window#waybar {
@@ -82,10 +82,7 @@ button:hover {
 #custom-cava,
 #clock,
 #battery,
-#cpu,
-#memory,
 #disk,
-#temperature,
 #backlight,
 #network,
 #pulseaudio,
@@ -102,7 +99,7 @@ button:hover {
     padding: 2px 10px;
     background-color: @background;
     border-radius: 8px;
-    margin: 6px 3px 0;
+    margin: 6px 3px 6px;
 }
 
 /* #window,
@@ -115,7 +112,7 @@ button:hover {
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+    margin-left: 3;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
@@ -158,19 +155,59 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu {
+#backlight {
     color: @color12;
+}
+
+#memory,
+#cpu,
+#temperature,
+#custom-system-nvidia-smi,
+#custom-gpu-temp {
+    color: @color12;
+    background-color: @background;
+    padding: 2px 4px;
+    margin: 6px 0px 6px;
 }
 
 #memory {
-    color: @color12;
+    border-radius: 8px 0px 0px 8px;
+    margin-left: 3px;
+    border-right: none;
+    padding: 2 12;
+}
+
+#cpu {
+    border-radius: 0px 0px 0px 0px;
+    margin-left: 0px;
+    border-right: none;
+}
+
+#temperature {
+    border-radius: 0 0px 0px 0;
+    margin-right: 0px;
+    padding-right: 3px;
+    border-left: none;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#custom-system-nvidia-smi {
+    border-radius: 0px 0px 0px 0px;
+    margin-left: 0px;
+    border-right: none;
+}
+
+#custom-gpu-temp {
+    border-radius: 0 8px 8px 0;
+    margin-right: 3px;
+    padding-right: 8px;
+    border-left: none;
 }
 
 #disk {
-    color: @color12;
-}
-
-#backlight {
     color: @color12;
 }
 
@@ -213,14 +250,6 @@ label:focus {
     background-color: #ffa000;
 }
 
-#temperature {
-    color: @color12;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
 #tray {
     color: @color12;
 }
@@ -235,12 +264,11 @@ label:focus {
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    background-color: #eb4d4b;
+    color: @color12;
 }
 
 #mpd {
@@ -292,22 +320,4 @@ label:focus {
 	background-color: transparent;
 }
 
-#custom-system-nvidia-smi,
-#custom-gpu-temp {
-    color: @color12;
-    background-color: @background;
-    padding: 0px 12px;
-    margin: 6px 0px 0;
-}
 
-#custom-system-nvidia-smi {
-    border-radius: 8px 0px 0px 8px;
-    margin-left: 3px;
-    border-right: none;
-}
-#custom-gpu-temp {
-    border-radius: 0 8px 8px 0;
-    margin-right: 3px;
-    padding-right: 8px;
-    border-left: none;
-}
