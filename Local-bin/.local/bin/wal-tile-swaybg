@@ -2,8 +2,9 @@
 
 killall swaybg
 killall swww-daemon
+# killall waybar
 wal -i "$@"
 swaybg -c "$(sed -n '6p' ${HOME}/.cache/wal/colors)" &
 sleep 1
-swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit
+swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit &
 # swaybg -o * bg "$(< "${HOME}/.cache/wal/wal")" fit "$(sed -n '6p' ${HOME}/.cache/wal/colors)"
