@@ -1,0 +1,85 @@
+#!/bin/sh
+
+~/Applications/clonehero &
+sleep 20
+xdotool type -
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool type -
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool key enter
+sleep 0.3
+xdotool key enter
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool key w
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool key w
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool key t
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool key t
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool type \\
+sleep 0.3
+xdotool key q
+sleep 0.3
+xdotool key w
