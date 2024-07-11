@@ -1,0 +1,6 @@
+#!/bin/sh
+# while pgrep waypaper
+while true;
+do
+	pgrep wal-tile-swaybg || wal-tile-swaybg $(tail -3 ~/.config/waypaper/config.ini | grep -o '/home.*')
+done
