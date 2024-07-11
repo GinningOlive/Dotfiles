@@ -1,0 +1,111 @@
+#!/bin/sh
+
+# Not needed as xdotool still works with xwayland windows, but still a good reference for how to create a macro with ydotool
+
+alias ydt='YDOTOOL_SOCKET="$HOME/.ydotool_socket" ydotool'
+
+~/Applications/clonehero &
+sleep 20
+ydt type -
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt type -
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt key 28:1
+ydt key 28:0
+sleep 0.3
+ydt key 28:1
+ydt key 28:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt type w
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt type w
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt type t
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt type t
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt key 43:1
+ydt key 43:0
+sleep 0.3
+ydt type q
+sleep 0.3
+ydt type w
