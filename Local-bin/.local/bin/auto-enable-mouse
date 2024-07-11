@@ -1,0 +1,9 @@
+#!/bin/sh
+while true;
+do
+	xinput enable "G604 LIGHTSPEED Mouse"
+	xinput disable "Wireless Controller Touchpad"
+	# xinput enable "ETPS/2 Elantech Touchpad"
+	xsetwacom set 'Wacom Intuos S Pen stylus' MapToOutput eDP-1
+	xsetwacom set 'Wacom Intuos S Pad pad' MapToOutput eDP-1
+done
