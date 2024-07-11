@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Not needed as xdotool still works with xwayland windows, but still a good reference for how to create a macro with ydotool
+
+alias ydt='YDOTOOL_SOCKET="$HOME/.ydotool_socket" ydotool'
+
+aseqdump -p "USB MIDI Interface" | \
+while IFS=" ," read src ev1 ev2 ch label1 data1 label2 data2 rest; do
+    case "$ev1 $ev2 $data1" in
+        "Note on 38" ) if [ ${data2} -gt 100 ]; then
+ydt type qe
+else
+ydt type q
+fi ;; # Snare
+        "Note on 40" ) if [ ${data2} -gt 90 ]; then
+ydt type wr
+else
+ydt type w
+fi ;; # Snare Rim
+    esac
+done
+
