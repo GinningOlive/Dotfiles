@@ -1,6 +1,6 @@
 #!/bin/sh
 
-choices="1\n2\n3\n4\ns1\ns2\ns3\ns4\nsq\nf\nw"
+choices="1\n2\n3\n4\ns1\ns2\ns3\ns4\nsq\nf\nw\nz\nr\nsr"
 
 chosen=$(echo -e "$choices" | rofi -dmenu)
 
@@ -16,4 +16,7 @@ case "$chosen" in
 	sq) i3-msg kill ;;
 	f) i3-msg floating toggle ;;
 	w) flatpak run com.brave.Browser ;;
+	z) ~/.config/polybar/polybar-toggle.sh ;;
+	r) wal-tile-feh Pictures/Wallpapers ;;
+	sr) i3-msg restart ;;
 esac
