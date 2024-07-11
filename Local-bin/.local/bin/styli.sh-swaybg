@@ -1,0 +1,4 @@
+#!/bin/sh
+
+styli.sh $1 $2
+wal-tile-swaybg $(tail -1 .fehbg | awk '{print $NF}' | cut -c 2- | rev | cut -c 2- | rev)
