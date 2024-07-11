@@ -1,0 +1,6 @@
+#!/bin/sh
+
+sudo vim /etc/fstab
+sudo systemctl daemon-reload
+sudo mount -a
+thunar /mnt/sambashare
