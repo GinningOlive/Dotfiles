@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if pgrep -x "polybar" > /dev/null
+if pgrep "polybar" > /dev/null
 then
     killall polybar
+    killall .polybar-wrapped
 else ~/.config/polybar/launch.sh
 fi
