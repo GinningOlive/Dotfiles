@@ -1,10 +1,11 @@
 #!/bin/sh
 
-choices="Suspend\nExit"
+choices="Suspend\nLock\nExit"
 
 chosen=$(echo -e "$choices" | rofi -dmenu)
 
 case "$chosen" in
-	Suspend) systemctl suspend && swaylock -f -c 000000 ;;
+	Suspend) swaylock -f -c 000000 && systemctl suspend ;;
+	Lock) swaylock -f -c 000000 ;;
 	Exit) hyprctl dispatch exit ;;
 esac
