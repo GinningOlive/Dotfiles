@@ -55,7 +55,7 @@ alias kill_hidamari="stop_hidamari"
 alias animated-background='back4.sh 0.01 $(fzf --query "Pictures/gifs/converted/")'
 
 # Flatpaks
-alias brave="flatpak run com.brave.Browser"
+# alias brave="flatpak run com.brave.Browser"
 
 # List installed AUR packages
 alias aur-list="pacman -Qem | expac --timefmt='%F %T' '%n %v %l' - | sort -k3"
@@ -79,6 +79,8 @@ then
 fi
 
 # NixOS
-alias nix-switch="nixos-rebuild switch"
-alias nix-test="nixos-rebuild test"
-alias nix-edit="sudo vim /etc/nixos/configuration.nix"
+alias ns="sudo nixos-rebuild switch"
+alias nt="sudo nixos-rebuild test"
+alias ne="sudo vim /etc/nixos/configuration.nix"
+# alias "hostname -I"="fconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1']}])]}]))"
+alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
