@@ -93,7 +93,13 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-bindkey -s '^o' '^U^K. ranger\n'
+LFCD="/path/to/lfcd.sh"
+if [ -f "$LFCD" ]; then
+	source "$LFCD"
+fi
+
+bindkey -s '^o' '^U^Klfcd\n'
+# bindkey -s '^o' '^U^K. ranger\n'
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
