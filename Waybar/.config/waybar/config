@@ -6,26 +6,28 @@
     // "width": 1280, // Waybar width
     // "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media", "hyprland/window ", "memory", "cpu", "temperature", "custom/system-nvidia-smi", "custom/gpu-temp", "custom/cava "],
+    "modules-left": ["sway/workspaces", "hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media", "hyprland/window ", "memory", "cpu", "temperature", "custom/system-nvidia-smi", "custom/gpu-temp", "custom/cava "],
     "modules-center": ["custom/cava ", "hyprland/workspaces "],
     "modules-right": ["mpd", "idle_inhibitor", "memory ", "cpu ", "temperature ", "custom/system-nvidia-smi ", "custom/gpu-temp ", "battery", "battery#bat2", "backlight", "pulseaudio", "tray", "clock"],
     // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "warp-on-scroll": false,
+    //  "format": "{name}",
+        "format": "{name}: {icon}",
+        "format": "{icon}",
+        "format-icons": {
     //         "1": "",
     //         "2": "",
     //         "3": "",
     //         "4": "",
     //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+           "urgent": "",
+           "focused": "",
+           "default": ""
+        }
+     },
     "hyprland/workspaces": {
         "all-outputs": true,
     },
@@ -157,7 +159,8 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
-        "on-click-right": "flatpak run org.rncbc.qpwgraph"
+        /* "on-click-right": "flatpak run org.rncbc.qpwgraph" */
+        "on-click-right": "qpwgraph"
     },
     "custom/media": {
         "format": "{icon} {}",
@@ -185,4 +188,3 @@
 	"exec": "python3 $HOME/.config/polybar/scripts/cava.py",
     }
 }
-
