@@ -5,7 +5,7 @@
 # |___/_/\_\_| |_|_|\_\__,_|_|  \___|
 
 super + {_,shift} + Return
-	{env GLFW_IM_MODULE=ibus /usr/bin/kitty,alacritty}
+	{env GLFW_IM_MODULE=ibus /usr/bin/env kitty,alacritty}
 	# {env GLFW_IM_MODULE=ibus /usr/bin/kitty,firefox}
 
 super + {_,shift} + q
@@ -26,10 +26,10 @@ super + F1
 super + Escape
 	rofi -show power-menu -modi power-menu:rofi-power-menu
 
-# super + {_,shift} + w
+super + {_,shift} + w
+	flatpak run {com.brave.Browser,dev.vencord.Vesktop}
 	# flatpak run {com.brave.Browser,com.obsproject.Studio}
 	# {flatpak run com.brave.Browser, Discord}
-	flatpak run {com.brave.Browser,dev.vencord.Vesktop}
 
 super + {_,shift} + e
 	{thunar,i3-msg sticky toggle}
