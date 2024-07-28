@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 choices="Extend\nDuplicate\neDP-1\nHDMI-1"
 
 chosen=$(echo -e "$choices" | rofi -dmenu)
 
-if pgrep -x "Hyprland" > /dev/null
+if pgrep "Hyprland" > /dev/null
 then
 case "$chosen" in
 	Extend) hyprctl keyword monitor eDP-1, 1920x1080, 1920x0, 1 && hyprctl keyword monitor HDMI-A-1, 1920x1080, 0x0, 1 ;;
