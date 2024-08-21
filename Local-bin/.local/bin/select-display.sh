@@ -9,7 +9,7 @@ then
 case "$chosen" in
 	Extend) hyprctl keyword monitor eDP-1, 1920x1080, 1920x0, 1 && hyprctl keyword monitor HDMI-A-1, 1920x1080, 0x0, 1 ;;
 	Duplicate) hyprctl keyword monitor eDP-1, 1920x1080, auto, 1 && hyprctl keyword monitor HDMI-A-1, preferred, auto, 1, mirror, eDP-1 ;;
-	eDP-1) hyprctl keyword monitor eDP-1, 1920x1080, auto, 1 && hyprctl keyword monitor HDMI-A-1, disable;;
+	eDP-1) hyprctl keyword monitor eDP-1, 1920x1080, 0x0, 1 && hyprctl keyword monitor HDMI-A-1, disable;;
 	HDMI-1) hyprctl keyword monitor HDMI-A-1, 1920x1080, auto, 1 && hyprctl keyword monitor eDP-1, disable ;;
 esac
 else
