@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if pgrep mpvpaper > /dev/null
+then
+    killall .mpvpaper-wrapped
+else mpvpaper -vs '*' av://v4l2:/dev/video2 -o --profile=low-latency
+fi
