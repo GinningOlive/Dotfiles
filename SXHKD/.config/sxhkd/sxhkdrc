@@ -17,6 +17,9 @@ super + {_,shift} + f
 super + {d,Tab}
 	rofi -show-icons -show {drun,window}
 
+super + shift + z;{d,Return,o}
+	DISPLAY=:12 env -u WAYLAND_DISPLAY {rofi -show-icons -show drun,kitty,obs}
+
 super + p
 	select-display.sh
 
