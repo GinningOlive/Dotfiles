@@ -16,17 +16,18 @@ blur_passes 1
 
 set $opacity 0.9
 for_window [app_id="kitty"] opacity $opacity
+for_window [class="vesktop"] opacity $opacity
 
 # Autostart
-exec_always autotiling
-exec wal-tile-swaybg $(cat ~/.cache/wal/wal) &
+exec autotiling
+# exec wal-tile-swaybg $(cat ~/.cache/wal/wal) &
 exec wlsunset -l 47 -L -122
-# exec_always pkill waybar ; killall .waybar-wrapped ; waybar &
+exec_always pkill waybar ; killall .waybar-wrapped ; waybar &
 exec fcitx5
 exec nm-applet
 exec easyeffects
 exec vesktop
-# exec dunst
+exec dunst
 
 ### Variables
 #
@@ -43,7 +44,6 @@ set $term kitty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu rofi -show drun
 
 ### Output configuration
 #
@@ -82,9 +82,10 @@ set $menu rofi -show drun
 
 # swaymsg -rt get_inputs → list input devices
 
-input "2:14:ETPS\/2_Elantech_Touchpad" {
+# input "2:14:ETPS\/2_Elantech_Touchpad" {
+input type:touchpad {
         natural_scroll enabled
-    }
+}
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -99,9 +100,6 @@ bindsym $mod+Return exec $term
 
     # Kill focused window
 bindsym $mod+Shift+q kill
-
-    # Start your launcher
-bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -123,22 +121,12 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 bindsym $mod+1 workspace number 1
@@ -204,11 +192,11 @@ bindsym $mod+Shift+f focus mode_toggle
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    # bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    # bindsym $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -234,6 +222,41 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym $mod+w exec brave
+bindsym $mod+Shift+w exec vesktop
+bindsym $mod+e exec thunar
+bindsym $mod+d exec rofi -show-icons -show drun
+bindsym $mod+z exec waybar-toggle.sh
+bindsym $mod+Shift+s exec grimshot --notify save anything /tmp/grimshot && ristretto /tmp/grimshot
+bindsym $mod+Tab exec rofi -show-icons -show window
+bindsym $mod+Escape exec hyprland-power-menu
+bindsym Control+Shift+Escape exec kitty -e btop
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl set-sink-mute @DEFAULT_SINK@ off
+bindsym $mod+bracketleft exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl set-sink-mute @DEFAULT_SINK@ off
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl set-sink-mute @DEFAULT_SINK@ off
+bindsym $mod+bracketright exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl set-sink-mute @DEFAULT_SINK@ off
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+backspace exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+XF86AudioRaiseVolume exec pactl set-source-volume 0 +5%
+bindsym $mod+XF86AudioLowerVolume exec pactl set-source-volume 0 -5%
+bindsym mod1+space exec toggle-mute
+
+# Media control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym $mod+backslash exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym $mod+equal exec brightnessctl set +10%
+bindsym $mod+minus exec brightnessctl set 10%-
+bindsym $mod+Shift+equal exec brightnessctl set +5%
+bindsym $mod+Shift+minus exec brightnessctl set 5%-
+
 #
 # Status Bar:
 #
@@ -252,9 +275,12 @@ bindsym $mod+r mode "resize"
     # }
 # }
 
-bar {
-	swaybar_command waybar
-}
+# bar {
+	# swaybar_command waybar
+	# position top
+	# mode hide
+	# modifier Mod4
+# }
 
 include /etc/sway/config.d/*
 
