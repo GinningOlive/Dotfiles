@@ -1,0 +1,41 @@
+set previewer ~/.config/lf/previewer
+set cleaner ~/.config/lf/cleaner
+set period 1
+set info size
+set dircounts
+# set scrolloff 10
+
+cmd open $set -f; rifle -p 0 "$fx"
+
+cmd open-with ${{
+    clear
+    set -f
+    rifle -l $fx | sed -e "s/:[a-Z]*:[a-Z]*:/ \| /"
+    read -p "open with: " method
+    rifle -p $method $fx
+}}
+
+cmd trash %trash $fx
+
+map r open-with
+map a rename
+map D trash
+map <backspace2> set hidden!
+map <f-7> push !mkdir<space>""<c-b>
+map p : paste; clear
+
+map g/ cd /
+map gr cd /
+map gd cd /dev
+map ge cd /etc
+map gm cd /media
+map gM cd /mnt
+map go cd /opt
+map gs cd /srv
+map gp cd /tmp
+map gu cd /usr
+map gv cd /var
+map gh cd ~
+map gc cd ~/.config/
+map glb cd ~/.local/bin/
+map gls cd ~/.local/share/
