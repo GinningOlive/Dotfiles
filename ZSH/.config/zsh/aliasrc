@@ -6,31 +6,33 @@
 
 #!/bin/sh
 
+alias v="nvim"
 alias ll="ls -l"
 alias la="ls -A"
-alias keydconfig="sudo vim /etc/keyd/default.conf"
+alias keydconfig="sudo nvim /etc/keyd/default.conf"
 # alias at="alacritty-themes"
 alias at_clear_backups="rm ~/.config/alacritty/alacritty.yml.*"
 alias terminal_clock='while echo -en "$(date)\r"; do sleep 1; done'
 alias tclock='while echo -en "$(date)\r"; do sleep 1; done'
-alias zrc="vim ~/.config/zsh/.zshrc"
-alias zhis="vim ~/.cache/zsh/history"
-alias arc="vim ~/.config/zsh/aliasrc"
-alias ayml="vim ~/.config/alacritty/alacritty.yml"
-alias krc="vim ~/.config/kitty/kitty.conf"
+alias zrc="nvim ~/.config/zsh/.zshrc"
+alias zhis="nvim ~/.cache/zsh/history"
+alias arc="nvim ~/.config/zsh/aliasrc"
+alias ayml="nvim ~/.config/alacritty/alacritty.yml"
+alias krc="nvim ~/.config/kitty/kitty.conf"
 alias vrc="vim ~/.vimrc"
-alias prc="vim ~/.config/polybar/config.ini"
-alias src="vim ~/.config/sxhkd/sxhkdrc"
-alias hrc="vim ~/.config/hypr/hyprland.conf"
-alias wrc="vim ~/.config/waybar/config"
-alias wstylerc="vim ~/.config/waybar/style.css"
-alias piconf="vim ~/.config/picom.conf"
+alias prc="nvim ~/.config/polybar/config.ini"
+alias src="nvim ~/.config/sxhkd/sxhkdrc"
+alias hrc="nvim ~/.config/hypr/hyprland.conf"
+alias wrc="nvim ~/.config/waybar/config"
+alias wstylerc="nvim ~/.config/waybar/style.css"
+alias piconf="nvim ~/.config/picom.conf"
 alias gnext="styli.sh -g -d ~/Pictures/Wallpapers"
 alias next="styli.sh -d ~/Pictures/Wallpapers"
-alias i3config="vim ~/.config/i3/config"
+alias i3config="nvim ~/.config/i3/config"
+alias swayconfig="nvim ~/.config/sway/config"
 # alias pwd="pwd | xclip -sel clipboard"
 alias windowclass="xprop | grep WM_CLASS"
-alias wallpaper="feh --bg-scale"
+alias xfce-wallpaper="xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitoreDP-1/workspace0/last-image -s $(cat ~/.cache/wal/wal)"
 alias kdiff="kitty +kitten diff"
 alias mp="mousepad"
 alias win="i3-msg move container to workspace 10 && i3-msg workspace 1"
@@ -42,6 +44,7 @@ alias ydt-search="cat /usr/include/linux/input-event-codes.h | grep -i"
 alias yarg="prime-run ~/.local/share/YARC/YARG\ Installs/stable/v0.12.3/YARG"
 alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
 alias job-resume="fg"
+alias lfcd='cd "$(command lf -print-last-dir "$@")"'
 
 # Betterlockscreen
 alias bl="betterlockscreen -u ~/Pictures/Wallpapers/ && eog ~/.cache/betterlockscreen/1-eDP-1/resize.png & ; eog ~/.cache/betterlockscreen/2-HDMI-1/resize.png"
@@ -81,6 +84,17 @@ fi
 # NixOS
 alias ns="sudo nixos-rebuild switch"
 alias nt="sudo nixos-rebuild test"
-alias ne="sudo vim /etc/nixos/configuration.nix"
+alias ne="sudo nvim /etc/nixos/configuration.nix"
+alias nix-file-location="nix-store -q --references /run/current-system/sw | grep"
 # alias "hostname -I"="fconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1']}])]}]))"
 alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
+
+# Xwayland DE/WM
+alias xwayi3="Xwayland -fullscreen -geometry 1920x1080 -host-grab -noreset -nokeymap :12 & ; sleep 1 ; DISPLAY=:12 i3"
+alias xwayqtile="Xwayland -fullscreen -geometry 1920x1080 -host-grab -noreset -nokeymap :12 & ; sleep 1 ; DISPLAY=:12 qtile start"
+alias xwaybspwm="Xwayland -fullscreen -geometry 1920x1080 -host-grab -noreset -nokeymap :12 & ; sleep 1 ; DISPLAY=:12 bspwm"
+alias xwayxfce="Xwayland -fullscreen -geometry 1920x1080 -host-grab -noreset -nokeymap :12 & ; sleep 1 ; DISPLAY=:12 SESSION_MANAGER= GDK_BACKEND=x11 dbus-run-session startxfce4"
+
+# Retroarch
+alias ri="if mount | grep -q Dropbox; then cp -afv ~/Rclone/Dropbox/Retroarch/saves/. ~/.local/share/Steam/steamapps/common/Retroarch/saves/; else echo 'dropbox not mounted'; fi"
+alias re="if mount | grep -q Dropbox; then cp -afv ~/.local/share/Steam/steamapps/common/RetroArch/saves/. ~/Rclone/Dropbox/Retroarch/saves/; else echo 'dropbox not mounted'; fi"
