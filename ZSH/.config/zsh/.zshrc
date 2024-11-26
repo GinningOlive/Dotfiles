@@ -42,7 +42,7 @@ setopt NO_MULTIOS
 setopt NO_FLOW_CONTROL
 
 # Use vim in ranger
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Enable colors and change prompt:
