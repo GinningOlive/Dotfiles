@@ -7,4 +7,16 @@ wal -i "$@"
 swaybg -c "$(sed -n '6p' ${HOME}/.cache/wal/colors)" &
 sleep 1
 swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit &
-# swaybg -o * bg "$(< "${HOME}/.cache/wal/wal")" fit "$(sed -n '6p' ${HOME}/.cache/wal/colors)"
+# swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit -c "$(sed -n '6p' ${HOME}/.cache/wal/colors)"
+
+sleep 1
+killall .swaync-wrapped
+swaync &
+
+# if pgrep -x "spotify" > /dev/null
+# then
+# killall spotify
+# spicetify apply
+# flatpak run com.spotify.Client &
+# else
+# spicetify apply
