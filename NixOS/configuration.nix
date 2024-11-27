@@ -18,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-f7a4bf69-5f7f-488c-8085-cd488271417d".device = "/dev/disk/by-uuid/f7a4bf69-5f7f-488c-8085-cd488271417d";
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos2020"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -64,6 +64,16 @@
   services.xserver.desktopManager.xfce.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.xserver.windowManager.i3.enable = true;
+  services.xserver.windowManager.bspwm.enable = true;
+
+  # Qtile
+  services.xserver.windowManager.qtile = {
+    enable = true;
+    extraPackages = python3Packages: with python3Packages; [
+      qtile-extras
+    ];
+  };
+
 
   # Greetd
   services.greetd = {
@@ -78,8 +88,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -114,7 +124,12 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # If this ever stops working https://github.com/NixOS/nixpkgs/pull/108909 might fix it
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+    touchpad.additionalOptions = ''MatchIsTouchpad "on'';
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ginningolive = {
@@ -175,7 +190,7 @@
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = false;
+    open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     prime = {
@@ -197,6 +212,24 @@
   # users.users.ginningolive.shell = pkgs.zsh;
   # users.users.ginningolive.useDefaultShell = true;
 
+  # Fish Shell
+  programs.fish = {
+    enable = true;
+    # plugins = [
+      # { name = "foreign-env"; src = pkgs.fetchFromGitHub { ... }; }
+    # ];
+    # shellInit = ''
+      # # nix
+      # if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        # fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+      # end
+      # # home-manager
+      # if test -e ...
+        # fenv source
+      # end
+    # '';
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -205,6 +238,11 @@
     enable = true;
     xwayland.enable = true;
   };
+
+  # wayland.windowManager.hyprland.plugins = [
+    # pkgs.hyprlandPlugins.hyprwinwrap
+  # ];
+
 
   programs.sway = {
     enable = true;
@@ -236,13 +274,21 @@
   # '';
 
   # Open network ports
-  networking.firewall.allowedTCPPorts = [ 7000 7001 7100 ];
-  networking.firewall.allowedUDPPorts = [ 5353 6000 6001 7011 ];
+  networking.firewall = { 
+  allowedTCPPorts = [ 7000 7001 7100 ];
+  allowedUDPPorts = [ 5353 6000 6001 7011 ];
+  allowedTCPPortRanges = [ 
+    { from = 1714; to = 1764; } # KDE Connect
+  ];  
+  allowedUDPPortRanges = [ 
+    { from = 1714; to = 1764; } # KDE Connect
+  ];  
+  };  
 
   # UXPLAY - To enable network-discovery
   services.avahi = {
     enable = true;
-    nssmdns = true;  # printing
+    nssmdns4 = true;  # printing
     openFirewall = true; # ensuring that firewall ports are open as needed
     publish = {
       enable = true;
@@ -282,7 +328,7 @@
   # XDG portal
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [
-    # pkgs.xdg-desktop-portal-hyprland # Removed until update 1.3.3
+    # pkgs.xdg-desktop-portal-hyprland # Removing this line doesn't seem to change anything
     pkgs.xdg-desktop-portal-gtk
   ];
 
@@ -297,6 +343,9 @@
       };
     };
   };
+
+  # Required for virtual machines
+  virtualisation.libvirtd.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -313,6 +362,7 @@
         wlrobs
         obs-backgroundremoval
         obs-pipewire-audio-capture
+        obs-teleport
       ];
     })
   ];
