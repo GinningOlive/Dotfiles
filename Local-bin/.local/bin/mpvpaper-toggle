@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
+OUTPUT=$(echo $(v4l2-ctl --list-devices) | wc -l)
+
 if pgrep mpvpaper > /dev/null
 then
     killall .mpvpaper-wrapped
-else mpvpaper -vs '*' av://v4l2:/dev/video2 -o --profile=low-latency
+elif [ ${OUTPUT} -eq 10 ]; then
+    mpvpaper -vs '*' av://v4l2:/dev/video2 -o --profile=low-latency
+else
+    mpvpaper -vs '*' av://v4l2:/dev/video0 -o --profile=low-latency
+
+# else mpvpaper -vs '*' av://v4l2:"$(v4l2-ctl --list-devices | sed -n '5p' | sed 's/^[[:space:]]*//g')" -o --profile=low-latency
+# else 
+     # nameNumber="$(v4l2-ctl --list-devices | grep -n HD60 | cut -d ':' -f 1)"
+     # devNumber=$((nameNumber + 1))
+     # devNumber=${devNumber}p
+     # mpvpaper -vs '*' av://v4l2:"$(v4l2-ctl --list-devices | sed -n '$devNumber' | sed 's/^[[:space:]]*//g')" -o --profile=low-latency
 fi
