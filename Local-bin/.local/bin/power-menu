@@ -1,0 +1,20 @@
+#!/bin/sh
+
+choices="Suspend\nLock\nExit"
+
+chosen=$(echo -e "$choices" | rofi -dmenu)
+
+if pgrep "Hyprland" > /dev/null
+then
+case "$chosen" in
+	Suspend) swaylock -f -c 000000 && systemctl suspend ;;
+	Lock) swaylock -f -c 000000 ;;
+	Exit) hyprctl dispatch exit ;;
+esac
+else
+case "$chosen" in
+	Suspend) i3lock && systemctl suspend ;;
+	Lock) i3lock ;;
+	Exit) loginctl terminate-session ${XDG_SESSION_ID-};;
+esac
+fi
