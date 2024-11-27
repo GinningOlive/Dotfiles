@@ -45,8 +45,9 @@
     polybar
     waybar
     eww
+    ags
+    libdbusmenu-gtk3
     hyprland
-    hyprlandPlugins.hyprwinwrap
     hyprpaper
     swaybg
     swaylock
@@ -60,7 +61,7 @@
     hyprpicker
     wshowkeys
     awesome
-    bspwm
+    # bspwm
     wmctrl
     screenfetch
     alacritty
@@ -104,14 +105,17 @@
     killall
     appimage-run
     pywal
-    python310Full
+    # python310Full
+    (python311.withPackages(ps: with ps; [ pandas requests]))
     dbus
     alsa-utils
     cifs-utils
     xorg.xf86inputsynaptics
+    xorg.xeyes
     pulseaudioFull
     mplayer
     cinnamon.mint-themes
+    cinnamon.mint-y-icons
     autotiling
     # xarchive - https://search.nixos.org/packages?channel=unstable&show=xarchive&from=0&size=50&sort=relevance&type=packages&query=xarchive
     xarchiver
@@ -134,5 +138,46 @@
     asciiquarium
     discover-overlay
     kdePackages.plasma-browser-integration
+    w3m
+    cool-retro-term
+    altserver-linux
+    yt-dlp
+    lunar-client
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
+    kdePackages.qt6ct
+    rclone
+    rclone-browser
+    bottles
+    musescore
+    stylish
+    kdePackages.kdenlive
+    kdePackages.kdeconnect-kde
+    glaxnimate
+    barrier
+    fastfetch
+    retroarch
+    qrencode
+    tetrio-desktop
+    v4l-utils
+    peaclock
+    space-cadet-pinball
+    spotify-player
+    protontricks
+    ripgrep
+    spicetify-cli
+    spotube
+    xwinwrap
+    swaynotificationcenter
+    ncpamixer
+    win2xcur
+    gimp-with-plugins
+    warpd
+    wl-kbptr
+    wlrctl
+    moonlight-qt
+    kanjidraw
+    qalculate-qt
+    qalculate-gtk
   ];
 }
