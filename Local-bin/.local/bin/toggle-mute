@@ -3,7 +3,7 @@
 OUTPUT=$(amixer get Capture | grep -oE '[0-9]{1,3}%' | sed -n '1p' | head -c 1)
 
 if [ ${OUTPUT} -eq "0" ]; then
-   pactl set-source-volume 0 30%
+   pactl set-source-volume 0 25%
    mplayer ~/Music/Discord\ unmute\ sound\ \[_HPu2vniToE\].opus
 else
    pactl set-source-volume 0 0%
