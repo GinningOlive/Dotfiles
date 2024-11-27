@@ -200,6 +200,8 @@ label:focus {
     border-right: none;
 }
 
+/*Comment if using Nvidia driver*/
+#temperature,
 #custom-gpu-temp {
     border-radius: 0 8px 8px 0;
     margin-right: 3px;
@@ -319,5 +321,3 @@ label:focus {
 #scratchpad.empty {
 	background-color: transparent;
 }
-
-
