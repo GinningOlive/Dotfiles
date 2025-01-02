@@ -46,13 +46,13 @@
     LC_TIME = "en_US.UTF-8";
   };
 
- i18n.inputMethod = {
-   enabled = "fcitx5";
-   fcitx5.addons = with pkgs; [
-     fcitx5-mozc
-     fcitx5-gtk
-   ];
- };
+ # i18n.inputMethod = {
+   # enabled = "fcitx5";
+   # fcitx5.addons = with pkgs; [
+     # fcitx5-mozc
+     # fcitx5-gtk
+   # ];
+ # };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -144,7 +144,7 @@
   # Fonts - https://nixos.wiki/wiki/Fonts
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     # noto-fonts-cjk-sans
     noto-fonts-emoji
     font-awesome
@@ -176,10 +176,10 @@
 
   # Nvidia
   # https://nixos.wiki/wiki/nvidia
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    # driSupport = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
         intel-compute-runtime
         rocmPackages.clr.icd
@@ -190,7 +190,7 @@
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
-    open = true;
+    open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     prime = {
@@ -298,6 +298,12 @@
       domain = true;
     };
   };
+
+  # ADB
+  programs.adb.enable = true;
+  # services.udev.packages = [
+    # pkgs.android-udev-rules
+  # ];
 
   # Sunshine - https://nixos.wiki/wiki/Sunshine
   services.sunshine = {
