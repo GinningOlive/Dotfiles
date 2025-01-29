@@ -6,17 +6,17 @@ OUTPUT=$(amixer get Capture | grep -oE '[0-9]{1,3}%' | sed -n '1p' | head -c 1)
 if [ ${CURRENT_MIC} == "alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_201507-00.mono-fallback" ]; then
    if [ ${OUTPUT} -eq "0" ]; then
       pactl set-source-volume 0 140%
-      mplayer ~/Music/Discord\ unmute\ sound\ \[_HPu2vniToE\].opus
+      mplayer ~/Music/Discord-unmute-sound.opus
    else
       pactl set-source-volume 0 0%
-      mplayer ~/Music/Discord\ mute\ sound\ \[xNNRQpP18dg\].opus
+      mplayer ~/Music/Discord-mute-sound.opus
    fi
 else
    if [ ${OUTPUT} -eq "0" ]; then
       pactl set-source-volume 0 25%
-      mplayer ~/Music/Discord\ unmute\ sound\ \[_HPu2vniToE\].opus
+      mplayer ~/Music/Discord-unmute-sound.opus
    else
       pactl set-source-volume 0 0%
-      mplayer ~/Music/Discord\ mute\ sound\ \[xNNRQpP18dg\].opus
+      mplayer ~/Music/Discord-mute-sound.opus
    fi
 fi
