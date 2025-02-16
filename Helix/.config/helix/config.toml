@@ -58,18 +58,29 @@ display-inlay-hints = true
 [keys.normal]
 g = { a = "code_action" } # Maps `ga` to show possible code actions
 "ret" = ["move_line_down", "goto_first_nonwhitespace"] # Maps the enter key to move to start of next line
-X = "extend_line_above"
+# X = "extend_line_above"
+X = "delete_char_backward"
 D = "delete_char_backward"
 esc = ["collapse_selection", "keep_primary_selection"]
+C-left = [ "move_prev_word_start", "move_char_left", "move_char_right" ]
+C-right = [ "move_next_word_start", "move_char_left", "move_char_right" ]
+S-left = "extend_char_left"
+S-right = "extend_char_right"
+S-up = "extend_line_up"
+S-down = "extend_line_down"
+C-S-left = "extend_prev_word_start"
+C-S-right= "extend_next_word_start"
 
-# A-w = ":buffer-close"
+C-q = ":buffer-close"
 q = ":quit"
 Q = ":buffer-close!"
 z = { z = [":write", ":config-reload"] }
 Z = { S-z = [":write-quit"] }
 
 C-o = ":config-open"
-C-r = ":config-reload"
+# C-r = ":config-reload"
+C-r = "redo"
+C-a = "select_all"
 
 C-h = "select_prev_sibling"
 C-j = "shrink_selection"
@@ -91,16 +102,86 @@ V = ["select_mode", "extend_to_line_bounds"]
 # D = ["extend_to_line_end", "yank_main_selection_to_clipboard", "delete_selection"]
 # S = "surround_add" # Would be nice to be able to do something after this but it isn't chainable
 
+x = "delete_selection_noyank"
+
+w = ["move_next_word_start", "move_char_right", "collapse_selection"]
+W = ["move_next_long_word_start", "move_char_right", "collapse_selection"]
+e = ["move_next_word_end", "collapse_selection"]
+E = ["move_next_long_word_end", "collapse_selection"]
+b = ["move_prev_word_start", "collapse_selection"]
+B = ["move_prev_long_word_start", "collapse_selection"]
+
 i = ["insert_mode", "collapse_selection"]
 a = ["append_mode", "collapse_selection"]
+u = ["undo", "collapse_selection"]
 
 # Search for word under cursor
 "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
 "#" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_prev"]
 
+# Extend and select commands that expect a manual input can't be chained
+# I've kept d[X] commands here because it's better to at least have the stuff you want to delete
+# selected so that it's just a keystroke away to delete
+[keys.normal.d]
+d = ["extend_to_line_bounds", "yank", "delete_selection"]
+t = ["extend_till_char"]
+s = ["surround_delete"]
+i = ["select_textobject_inner"]
+a = ["select_textobject_around"]
+j = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank", "delete_selection", "normal_mode"]
+down = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank", "delete_selection", "normal_mode"]
+k = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "delete_selection", "normal_mode"]
+up = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "delete_selection", "normal_mode"]
+G = ["select_mode", "extend_to_line_bounds", "goto_last_line", "extend_to_line_bounds", "yank", "delete_selection", "normal_mode"]
+w = ["move_next_word_start", "yank", "delete_selection"]
+W = ["move_next_long_word_start", "yank", "delete_selection"]
+
+[keys.normal.d.g]
+g = ["select_mode", "extend_to_line_bounds", "goto_file_start", "extend_to_line_bounds", "yank", "delete_selection", "normal_mode"]
+h = ["move_char_left", "select_mode", "goto_line_start", "yank", "delete_selection", "normal_mode"]
+l = ["select_mode", "goto_line_end", "yank", "delete_selection", "normal_mode"]
+
+[keys.normal.y]
+y = ["extend_to_line_bounds", "yank", "normal_mode", "collapse_selection"]
+j = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank", "collapse_selection", "normal_mode"]
+down = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank", "collapse_selection", "normal_mode"]
+k = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "collapse_selection", "normal_mode"]
+up = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "collapse_selection", "normal_mode"]
+G = ["select_mode", "extend_to_line_bounds", "goto_last_line", "extend_to_line_bounds", "yank", "collapse_selection", "normal_mode"]
+w = ["move_next_word_start", "yank", "collapse_selection", "normal_mode"]
+W = ["move_next_long_word_start", "yank", "collapse_selection", "normal_mode"]
+g = { g = ["select_mode", "extend_to_line_bounds", "goto_file_start", "extend_to_line_bounds", "yank", "collapse_selection", "normal_mode"] }
+
+[keys.normal.c]
+d = ["extend_to_line_bounds", "yank", "change_selection"]
+c = ["extend_to_line_bounds", "yank", "change_selection"]
+t = ["extend_till_char"]
+s = ["surround_delete"]
+i = ["select_textobject_inner"]
+a = ["select_textobject_around"]
+j = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank", "change_selection", "normal_mode"]
+down = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank", "change_selection", "normal_mode"]
+k = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "change_selection", "normal_mode"]
+up = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "change_selection", "normal_mode"]
+G = ["select_mode", "extend_to_line_bounds", "goto_last_line", "extend_to_line_bounds", "yank", "change_selection", "normal_mode"]
+w = ["move_next_word_start", "yank", "change_selection"]
+W = ["move_next_long_word_start", "yank", "change_selection"]
+g = { g = ["select_mode", "extend_to_line_bounds", "goto_file_start", "extend_to_line_bounds", "yank", "change_selection", "normal_mode"] }
+
+# [keys.normal.";"]
+# b = ["collapse_selection", ":w", ":sh run.sh %val{filename}"]
+# p = ["collapse_selection", ":w", ":sh python3 %"]
+
 [keys.insert]
 j = { k = "normal_mode" } # Maps `jk` to exit insert mode
 esc = ["collapse_selection", "normal_mode"]
+C-left = [ "move_prev_word_start", "move_char_left", "move_char_right" ]
+C-right = [ "move_next_word_start", "move_char_left", "move_char_right" ]
+C-backspace = "delete_word_backward"
+S-left = "extend_char_left"
+S-right = "extend_char_right"
+S-up = "extend_line_up"
+S-down = "extend_line_down"
 
 [keys.select]
 # Muscle memory
@@ -120,10 +201,6 @@ U = ["switch_to_uppercase", "collapse_selection", "normal_mode"]
 # Visual-mode specific muscle memory
 i = "select_textobject_inner"
 a = "select_textobject_around"
-
-# Some extra binds to allow us to insert/append in select mode because it's nice with multiple cursors
-tab = ["insert_mode", "collapse_selection"] # tab is read by most terminal editors as "C-i"
-C-a = ["append_mode", "collapse_selection"]
 
 # Make selecting lines in visual mode behave sensibly
 # k = ["extend_line_up", "extend_to_line_bounds"]
