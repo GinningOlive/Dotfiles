@@ -26,7 +26,7 @@
     neofetch
     cava
     mangohud
-    trashy
+    trash-cli
     autojump
     tldr
     xclip
@@ -89,7 +89,7 @@
     easyeffects
     # obs-studio
     parsec-bin
-    cura
+    # cura
     vesktop
     discord
     mupen64plus
@@ -125,7 +125,7 @@
     ffmpeg
     # osu-lazer-bin
     libnotify
-    # linux-wallpaperengine
+    linux-wallpaperengine
     jq
     slurp
     grim
@@ -179,5 +179,10 @@
     kanjidraw
     qalculate-qt
     qalculate-gtk
+    scrcpy
+    qtscrcpy
+    dolphin-emu
+    beeper
+    keepassxc
   ];
 }
