@@ -2,7 +2,7 @@
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif, "Font Awesome 6 Free";
     font-size: 15px;
 }
 
@@ -200,8 +200,8 @@ label:focus {
     border-right: none;
 }
 
-/*Comment if using Nvidia driver*/
-#temperature,
+/*Comment only next line if using Nvidia driver*/
+/* #temperature, */
 #custom-gpu-temp {
     border-radius: 0 8px 8px 0;
     margin-right: 3px;
