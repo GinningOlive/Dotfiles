@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       # Move parts of file to home directory
       /home/ginningolive/.config/nixos/packages.nix
+      /home/ginningolive/.config/nixos/firewall.nix
       # /home/ginningolive/.config/nixos/obs.nix
     ];
 
@@ -26,7 +27,11 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    dns = "default";
+    wifi.powersave = false;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -46,13 +51,15 @@
     LC_TIME = "en_US.UTF-8";
   };
 
- # i18n.inputMethod = {
-   # enabled = "fcitx5";
-   # fcitx5.addons = with pkgs; [
-     # fcitx5-mozc
-     # fcitx5-gtk
-   # ];
- # };
+ i18n.inputMethod = {
+   type = "fcitx5";
+   enable = true;
+   fcitx5.waylandFrontend = true;
+   fcitx5.addons = with pkgs; [
+     fcitx5-mozc
+     fcitx5-gtk
+   ];
+ };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -262,28 +269,27 @@
   security.polkit.enable = true;
 
   # For OBS Virtual Camera
-  # subject.isInGroup("users")
-  # security.polkit.extraConfig = ''
-    # polkit.addRule(function(action, subject) {
-        # if (action.id == "org.freedesktop.policykit.exec" &&
-            # action.lookup("program") == "/run/current-system/sw/bin/modprobe" &&
-            # subject.isInGroup("users")) {
-            # return polkit.Result.YES;
-        # }
-    # });
-  # '';
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.policykit.exec" &&
+            action.lookup("program") == "/run/current-system/sw/bin/modprobe" &&
+            subject.isInGroup("users")) {
+            return polkit.Result.YES;
+        }
+    });
+  '';
 
   # Open network ports
-  networking.firewall = { 
-  allowedTCPPorts = [ 7000 7001 7100 ];
-  allowedUDPPorts = [ 5353 6000 6001 7011 ];
-  allowedTCPPortRanges = [ 
-    { from = 1714; to = 1764; } # KDE Connect
-  ];  
-  allowedUDPPortRanges = [ 
-    { from = 1714; to = 1764; } # KDE Connect
-  ];  
-  };  
+  # networking.firewall = { 
+  # allowedTCPPorts = [ 7000 7001 7100 ];
+  # allowedUDPPorts = [ 5353 6000 6001 7011 ];
+  # allowedTCPPortRanges = [ 
+    # { from = 1714; to = 1764; } # KDE Connect
+  # ];  
+  # allowedUDPPortRanges = [ 
+    # { from = 1714; to = 1764; } # KDE Connect
+  # ];  
+  # };  
 
   # UXPLAY - To enable network-discovery
   services.avahi = {
@@ -476,12 +482,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
