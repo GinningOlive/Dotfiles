@@ -1,12 +1,15 @@
 { config, pkgs, ... }:
 
-{
+let
+  unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
+in {
   environment.systemPackages = with pkgs; [
     vim
     git
     wget
     i3
     rofi-wayland
+    fuzzel
     arandr
     sxhkd
     stow
@@ -17,6 +20,7 @@
     brightnessctl
     playerctl
     flameshot
+    satty
     lxappearance
     nwg-look
     dunst
@@ -34,8 +38,8 @@
     screenkey
     cmatrix
     lolcat
-    gnome.gnome-boxes
-    gnome.gnome-calculator
+    gnome-boxes
+    gnome-calculator
     gpick
     micro
     redshift
@@ -49,6 +53,12 @@
     libdbusmenu-gtk3
     hyprland
     hyprpaper
+    hyprshot
+    hyprpicker
+    hyprlock
+    hypridle
+    hyprlandPlugins.hyprwinwrap
+    hyprlandPlugins.hyprexpo
     swaybg
     swaylock
     # wpaperd
@@ -57,8 +67,6 @@
     waypaper
     mpv
     opentabletdriver
-    hyprshot
-    hyprpicker
     wshowkeys
     awesome
     # bspwm
@@ -67,8 +75,6 @@
     alacritty
     kitty
     glava
-    hyprlock
-    hypridle
     krusader
     ranger
     lf
@@ -78,6 +84,7 @@
     wl-clipboard
     superTuxKart
     helix
+    nil
     vlc
     fzf
     neovim
@@ -106,22 +113,27 @@
     appimage-run
     pywal
     # python310Full
-    (python311.withPackages(ps: with ps; [ pandas requests]))
+    (python311.withPackages(ps: with ps; [ pandas requests mido python-rtmidi pynput]))
+    python3Packages.python-lsp-server
+    jdk17
+    jdt-language-server
     dbus
     alsa-utils
     cifs-utils
     xorg.xf86inputsynaptics
     xorg.xeyes
+    # xorg.xf86videodummy
+    # xorg.xinit
     pulseaudioFull
     mplayer
-    cinnamon.mint-themes
-    cinnamon.mint-y-icons
+    mint-themes
+    mint-y-icons
     autotiling
     # xarchive - https://search.nixos.org/packages?channel=unstable&show=xarchive&from=0&size=50&sort=relevance&type=packages&query=xarchive
     xarchiver
     arrpc
     glxinfo
-    input-leap
+    # input-leap
     ffmpeg
     # osu-lazer-bin
     libnotify
@@ -132,7 +144,7 @@
     xfce.xfce4-whiskermenu-plugin
     pistol
     file
-    davinci-resolve
+    # davinci-resolve
     # sunshine
     # pywalfox-native
     asciiquarium
@@ -142,7 +154,7 @@
     cool-retro-term
     altserver-linux
     yt-dlp
-    lunar-client
+    unstable.lunar-client
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     kdePackages.qt6ct
@@ -150,7 +162,7 @@
     rclone-browser
     bottles
     musescore
-    stylish
+    # stylish
     kdePackages.kdenlive
     kdePackages.kdeconnect-kde
     glaxnimate
@@ -165,7 +177,7 @@
     spotify-player
     protontricks
     ripgrep
-    spicetify-cli
+    unstable.spicetify-cli
     spotube
     xwinwrap
     swaynotificationcenter
@@ -175,14 +187,22 @@
     warpd
     wl-kbptr
     wlrctl
-    moonlight-qt
+    unstable.moonlight-qt
     kanjidraw
     qalculate-qt
     qalculate-gtk
-    scrcpy
+    unstable.scrcpy
     qtscrcpy
     dolphin-emu
     beeper
     keepassxc
+    kando
+    # nvidia_x11
+    libvdpau
+    vdpauinfo
+    localsend
+    remnote
+    gamemode
+    xwayland-satellite
   ];
 }
