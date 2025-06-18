@@ -1,13 +1,21 @@
 #!/usr/bin/env sh
 
-killall swaybg
+# killall swaybg
+killall .swaybg-wrapped
 killall swww-daemon
 # killall waybar
 wal -i "$@"
-swaybg -c "$(sed -n '6p' ${HOME}/.cache/wal/colors)" &
-sleep 1
 swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit &
+sleep 1
+COLOR=$(hyprpicker -a)
+# swaybg -c "$(hyprpicker -a)" &
+# swaybg -c "$(sed -n '6p' ${HOME}/.cache/wal/colors)" &
+sleep 1
+killall .swaybg-wrapped
+sleep 1
+# swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit &
 # swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit -c "$(sed -n '6p' ${HOME}/.cache/wal/colors)"
+swaybg -i "$(< "${HOME}/.cache/wal/wal")" -m fit -c "${COLOR}" &
 
 sleep 1
 killall .swaync-wrapped
