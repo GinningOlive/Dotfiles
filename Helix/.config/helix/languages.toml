@@ -1,0 +1,31 @@
+[[language]]
+name = "python"
+language-servers = ["pylsp"]
+
+[language-server.pylsp]
+command = "pylsp"
+
+[[language]]
+name = "nix"
+language-servers = ["nil"]
+
+[language-server.nil]
+command = "nil"
+
+[[language]]
+name = "markdown"
+scope = "source.markdown"
+file-types = ["txt", "md"]
+language-servers = ["buffer-ls"]
+
+[language-server.buffer-ls]
+command = "buffer-language-server"
+
+[[language]]
+name = "java"
+file-types = ["java"]
+language-servers = ["jdtls"]
+
+[language-server.jdtls]
+command = "jdtls"
+args = [ "-data", "/home/ginningolive/.cache/jdtls-workspace" ]
