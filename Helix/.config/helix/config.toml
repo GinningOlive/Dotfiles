@@ -164,8 +164,10 @@ down = ["select_mode", "extend_to_line_bounds", "extend_line_below", "yank", "ch
 k = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "change_selection", "normal_mode"]
 up = ["select_mode", "extend_to_line_bounds", "extend_line_above", "yank", "change_selection", "normal_mode"]
 G = ["select_mode", "extend_to_line_bounds", "goto_last_line", "extend_to_line_bounds", "yank", "change_selection", "normal_mode"]
-w = ["move_next_word_start", "yank", "change_selection"]
-W = ["move_next_long_word_start", "yank", "change_selection"]
+# w = ["move_next_word_start", "yank", "change_selection"]
+# W = ["move_next_long_word_start", "yank", "change_selection"]
+w = ["move_next_word_end", "change_selection"]
+W = ["move_next_long_word_end", "change_selection"]
 g = { g = ["select_mode", "extend_to_line_bounds", "goto_file_start", "extend_to_line_bounds", "yank", "change_selection", "normal_mode"] }
 
 # [keys.normal.";"]
