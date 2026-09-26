@@ -50,7 +50,7 @@ exec fcitx5
 exec dunst
 exec wal-tile-feh $(tail -1 .fehbg | awk '{print $NF}' | cut -c 2- | rev | cut -c 2- | rev)
 exec_always pkill sxhkd ; sxhkd &
-exec ~/.local/bin/auto-enable-mouse
+# exec ~/.local/bin/auto-enable-mouse
 exec_always xinput enable "ETPS/2 Elantech Touchpad"
 # exec_always xinput enable "G604 LIGHTSPEED Mouse"
 # exec_always xinput disable "Wireless Controller Touchpad"
