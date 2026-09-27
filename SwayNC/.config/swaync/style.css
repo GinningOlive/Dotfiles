@@ -1,0 +1,11 @@
+@import url("file:///home/ginningolive/.cache/wal/colors.css");
+
+/* Notification bubble background */
+.notification {
+    background: color-mix(in srgb, var(--background) 90%, transparent);
+}
+
+/* Control center background */
+.control-center {
+    background: color-mix(in srgb, var(--background) 90%, transparent);
+}
