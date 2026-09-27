@@ -26,7 +26,7 @@ input {
     touchpad {
         // off
         // tap
-        // dwt
+        dwt
         // dwtp
         // drag false
         // drag-lock
@@ -69,7 +69,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
+output "DP-2" {
     // Uncomment this line to disable this output.
     // off
 
@@ -79,10 +79,11 @@ input {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
+    // mode "1920x1080@120.030"
+    mode "3440x1440@240.000"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
+    scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -97,7 +98,16 @@ input {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    position x=0 y=0
+    variable-refresh-rate on-demand=true
+}
+output "DP-1" {
+    // off
+    mode "1920x1080@60.000"
+    // mode "1280x720@60.000"
+    scale 1
+    transform "normal"
+    position x=3465 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -106,7 +116,7 @@ input {
 layout {
     background-color "transparent"
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 8
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -115,15 +125,20 @@ layout {
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
     center-focused-column "never"
+    // center-focused-column "always"
+    // center-focused-column "on-overflow"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
         // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
         // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+        proportion 0.25
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.75
+        proportion 1.0
 
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
@@ -133,7 +148,7 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.25; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -184,7 +199,7 @@ layout {
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
-    border {
+    /- border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
         // off
@@ -245,8 +260,12 @@ layout {
     struts {
         // left 64
         // right 64
-        left 32
-        right 32
+        // left 32
+        // right 32
+        // left 16
+        // right 16
+        left 1
+        right 1
         // top 64
         // bottom 64
     }
@@ -257,16 +276,46 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
+spawn-at-startup "systemctl" "--user" "restart" "xdg-desktop-portal*"
+// spawn-at-startup "nohup" "steam" "-tenfoot" "&"
+// spawn-at-startup "exec-once = wal-tile-swaybg $(cat ~/.cache/wal/wal)"
+spawn-at-startup "bash" "-c" "wal-tile-swaybg \"$(tail -22 ~/.config/waypaper/config.ini | grep -o '~.*' | cut -c 3-)\""
+// spawn-sh-at-startup "wal-tile-swaybg \"$(tail -22 ~/.config/waypaper/config.ini | grep -o '~.*' | cut -c 3-)\""
+// spawn-at-startup "exec = pkill waybar ; waybar"
+spawn-at-startup "fcitx5"
+spawn-at-startup "swaync"
+spawn-at-startup "nm-applet"
+spawn-at-startup "niriusd"
+// spawn-at-startup "hypridle"
+// spawn-at-startup "vesktop"
+// spawn-at-startup "flatpak" "run" "dev.vencord.Vesktop"
+spawn-at-startup "equibop"
+// spawn-at-startup "easyeffects"
+spawn-at-startup "swayidle.sh"
+// spawn-at-startup "waycorner"
+spawn-at-startup "wlsunset" "-l" "47" "-L" "-122"
 spawn-at-startup "waybar"
+spawn-at-startup "wheelbinds.py"
+spawn-at-startup "steam" "-silent"
 
+// Set desktop portal
 
+spawn-at-startup "export XDG_DESKTOP_PORTAL=gtk"
 
-spawn-at-startup "xwayland-satellite"
+// Swayidle
+// spawn-at-startup "swayidle" "-w"
+  // "timeout" "600" "brightnessctl -s set 0"
+  // "resume"  "brightnessctl -r"
+  // Uncomment to lock on idle (fade to black + lock):
+  // "timeout" "600" "swaylock -f -c 000000"
 
-environment {
-    DISPLAY ":0"
-}
+// x11
+
+// spawn-at-startup "xwayland-satellite"
+
+// environment {
+    // DISPLAY ":0"
+// }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -298,7 +347,19 @@ animations {
 // Put swaybg inside the overview backdrop.
 layer-rule {
     match namespace="^wallpaper$"
+    match namespace="^linux-wallpaperengine$"
+
     place-within-backdrop true
+}
+
+// Block out notifications from screencasts.
+layer-rule {
+    match namespace="^notifications$"
+    // match namespace="^wallpaper$"
+    // match namespace="^linux-wallpaperengine$"
+
+    block-out-from "screencast"
+    // block-out-from "screen-capture"
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -315,11 +376,12 @@ window-rule {
 
     opacity 0.8
 }
-// Transparency doesn't work with theses for some reason
 window-rule {
-    match app-id="vesktop"
-    match app-id="com.github.wwmm.easyeffects"
-    match app-id="org.gnome.Boxes"
+    match app-id="zen"
+    match title=r#"YouTube — Zen Browser"#
+    match app-id="vesktop" title=r#"(general|General|Watch|Hangout)"#
+    match app-id="equibop" title=r#"(general|General|Watch|Hangout)"#
+    // match app-id="vesktop"
 
     opacity 1.0
 }
@@ -327,12 +389,53 @@ window-rule {
 window-rule {
     match app-id="zen"
     match app-id="vesktop"
+    match app-id="equibop"
     match app-id="com.github.wwmm.easyeffects"
     match app-id="com.obsproject.Studio"
     match app-id="org.gnome.Boxes"
+    match app-id="steam_proton"
+    match app-id="steam_app"
 
 
     open-maximized true
+}
+
+window-rule {
+    match app-id="steam_app"
+    match app-id="Apprun"
+    match title="NTE  "
+
+
+    open-maximized true
+    variable-refresh-rate true
+}
+
+window-rule {
+    match app-id="scrcpy"
+
+    // open-floating true
+    min-width 472
+    opacity 1.0
+}
+
+window-rule {
+    match app-id="osu!"
+
+    min-height 1425
+    min-width 1900
+    opacity 1.0
+}
+
+window-rule {
+    match app-id="com.github.wwmm.easyeffects"
+
+    min-width 480
+}
+
+window-rule {
+    match title="btop"
+
+    default-column-width { fixed 1147; }
 }
 
 // Work around WezTerm's initial configure bug
@@ -351,6 +454,13 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match title="Picture-in-Picture"
+    // match app-id="app.zen_browser.zen" title=r#"Yomitan"#
+    match title="MainPicker"
+    match app-id="thunar" title="^Rename"
+    match app-id="thunar" title="File Operation Progress"
+    match title="waypaper"
+    match title="ProtonFixes"
     open-floating true
 }
 
@@ -386,18 +496,26 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+Shift+Return hotkey-overlay-title="Open mousepad" { spawn "mousepad"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi drun" { spawn "rofi" "-show-icons" "-show" "drun"; }
     Mod+A {spawn "swaync-client" "-t" "-sw"; }
     Mod+Shift+A {spawn "swaync-client" "-t" "-sw"; }
-    Mod+S { spawn "bash" "-c" "grimshot --notify save anything /tmp/grimshot && ristretto /tmp/grimshot"; }
+    // Mod+S { spawn "bash" "-c" "grimshot --notify save anything /tmp/grimshot && ristretto /tmp/grimshot"; }
+    Mod+S {screenshot-window write-to-disk=false;}
     Mod+Shift+S { spawn "bash" "-c" "grim -g \"$(slurp -o -r -c '##ff0000ff')\" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png"; }
     Mod+E { spawn "thunar"; }
-    Mod+R { spawn "bash" "-c" "waypaper && wal-tile-swaybg $(tail -22 ~/.config/waypaper/config.ini | grep -o '~.*' | cut -c 3-)"; }
-    Mod+Shift+R { spawn "wal-tile-swaybg" "$(cat ~/.cache/wal/wal)"; }
+    Mod+Shift+E { spawn "nirius" "toggle-follow-mode"; }
+    Mod+R { spawn "bash" "-c" "waypaper && wal-tile-swaybg $(tail -24 ~/.config/waypaper/config.ini | head -1 | cut -c 13-)"; }
+    Mod+Shift+R { spawn "bash" "-c" "wal-tile-swaybg \"$(tail -24 ~/.config/waypaper/config.ini | head -1 | cut -c 13-)\""; }
+    // Mod+Shift+R { spawn "bash" "-c" "wal-tile-swaybg \"$(tail -23 ~/.config/waypaper/config.ini | grep -o '~.*' | cut -c 3-)\""; }
+    // Mod+Shift+R { spawn "wal-tile-swaybg" "$(cat ~/.cache/wal/wal)"; }
     Mod+Tab { spawn "rofi" "-show-icons" "-show" "window"; }
     Mod+C { spawn "qalculate-gtk"; }
     Mod+Shift+C { spawn "hyprpicker" "-a"; }
     Mod+W { spawn "~/.local/bin/waybar-toggle.sh"; }
+    Mod+Shift+W { screenshot; }
+    // Mod+Shift+T { spawn "jp-region-ocr-copy"; }
+    Mod+Shift+T { spawn "kitty" "-e" "ocr"; }
     Mod+Shift+Tab { toggle-window-rule-opacity; }
     Ctrl+Shift+Escape { spawn "kitty" "-e" "btop"; }
     Mod+Escape { spawn "power-menu"; }
@@ -410,13 +528,37 @@ binds {
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    Alt+Space            allow-when-locked=true { spawn "toggle-mute"; }
+    // XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    // XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    
 
 
+    // Volume control
+    // XF86AudioRaiseVolume     allow-when-locked=true { spawn "bash" "-c" "pactl set-sink-volume @DEFAULT_SINK@ +1% && pactl set-sink-mute @DEFAULT_SINK@ off"; }
+    // XF86AudioLowerVolume     allow-when-locked=true { spawn "bash" "-c" "pactl set-sink-volume @DEFAULT_SINK@ -1% && pactl set-sink-mute @DEFAULT_SINK@ off"; }
+    // XF86AudioMute            allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    // Mod+Backspace            allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    Alt+Space                allow-when-locked=true { spawn "toggle-mute"; }
+    // Mod+XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "pactl set-source-volume 0 +5%"; }
+    // Mod+XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "-c" "pactl set-source-volume 0 -5%"; }
+
+    XF86AudioRaiseVolume     allow-when-locked=true { spawn "swayosd-client" "--output-volume" "3"; }
+    XF86AudioLowerVolume     allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-3"; }
+    XF86AudioMute            allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    Mod+Backspace            allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    // XF86AudioMicMute         allow-when-locked=true { spawn "swayosd-client" "--input-volume"  "mute-toggle"; }
+    // Alt+Space                allow-when-locked=true { spawn "swayosd-client" "--input-volume"  "mute-toggle"; }
+    Mod+XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--input-volume"  "raise" "--max-volume" "160"; }
+    Mod+XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--input-volume"  "lower" "--max-volume" "160"; }
+
+    // Media control
+    XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    Mod+Backslash allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+
+    // Brightness control
     XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+10%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "10%-"; }
     Mod+equal             allow-when-locked=true { spawn "brightnessctl" "set" "+10%"; }
@@ -465,19 +607,27 @@ binds {
     // Mod+Shift+Down  { focus-monitor-down; }
     // Mod+Shift+Up    { focus-monitor-up; }
     // Mod+Shift+Right { focus-monitor-right; }
-    // Mod+Shift+H     { focus-monitor-left; }
-    // Mod+Shift+J     { focus-monitor-down; }
-    // Mod+Shift+K     { focus-monitor-up; }
-    // Mod+Shift+L     { focus-monitor-right; }
+    Mod+Alt+H     { focus-monitor-left; }
+    // Mod+Alt+J     { focus-monitor-down; }
+    // Mod+Alt+K     { focus-monitor-up; }
+    Mod+Alt+L     { focus-monitor-right; }
+    Mod+Alt+J     { focus-monitor-left; }
+    Mod+Alt+K     { focus-monitor-right; }
+    Mod+Alt+3     { focus-monitor-right; }
+    Mod+Alt+4     { focus-monitor-left; }
 
     // Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
     // Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
     // Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     // Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    Mod+Shift+Alt+H     { move-column-to-monitor-left; }
+    // Mod+Shift+Alt+J     { move-column-to-monitor-down; }
+    // Mod+Shift+Alt+K     { move-column-to-monitor-up; }
+    Mod+Shift+Alt+L     { move-column-to-monitor-right; }
+    Mod+Shift+Alt+J     { move-column-to-monitor-left; }
+    Mod+Shift+Alt+K     { move-column-to-monitor-right; }
+    Mod+Shift+Alt+3     { move-column-to-monitor-right; }
+    Mod+Shift+Alt+4     { move-column-to-monitor-left; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -511,22 +661,37 @@ binds {
     // To avoid scrolling through workspaces really fast, you can use
     // the cooldown-ms property. The bind will be rate-limited to this value.
     // You can set a cooldown on any bind, but it's most useful for the wheel.
+
+    // Mod+WheelScrollDown       { focus-window-or-workspace-down; }
+    // Mod+WheelScrollUp         { focus-window-or-workspace-up; }
+    
+    // Mod+WheelScrollDown      cooldown-ms=75 { focus-window-or-workspace-down; }
+    // Mod+WheelScrollUp        cooldown-ms=75 { focus-window-or-workspace-up; }
+    
     Mod+WheelScrollDown      cooldown-ms=150 { focus-window-or-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-window-or-workspace-up; }
+    
     // Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     // Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+    Mod+Shift+WheelScrollDown  { move-window-down-or-to-workspace-down; }
+    Mod+Shift+WheelScrollUp    { move-window-up-or-to-workspace-up; }
+    Mod+Shift+WheelScrollRight { move-column-right; }
+    Mod+Shift+WheelScrollLeft  { move-column-left; }
+
+    // Mod+Ctrl+WheelScrollRight { move-column-right; }
+    // Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
     // Usually scrolling up and down with Shift in applications results in
     // horizontal scrolling; these binds replicate that.
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    // Mod+Shift+WheelScrollDown      { focus-column-right; }
+    // Mod+Shift+WheelScrollUp        { focus-column-left; }
+    // Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    // Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
@@ -545,14 +710,17 @@ binds {
     //
     // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
     // will all refer to the 3rd workspace.
-    Alt+1 { focus-workspace 1; }
-    Alt+2 { focus-workspace 1; }
-    Alt+3 { focus-workspace 1; }
-    Alt+4 { focus-workspace 1; }
+    // Alt+1 { spawn "nirius" "focus" "-a" "vesktop"; }
+    Alt+1 { spawn "nirius" "focus" "-a" "equibop"; }
+    // Alt+2 { spawn "nirius" "focus" "-a" "com.github.wwmm.easyeffects"; }
+    // Alt+3 { spawn "nirius" "focus" "-a" "vesktop"; }
+    Alt+4 { spawn "nirius" "focus" "-a" "steam_app_"; }
+    Alt+5 { spawn "nirius" "focus" "-a" "Minecraft"; }
     Alt+Shift+1 { move-column-to-workspace 1; }
-    Alt+Shift+2 { move-column-to-workspace 1; }
-    Alt+Shift+3 { move-column-to-workspace 1; }
-    Alt+Shift+4 { move-column-to-workspace 1; }
+    Alt+Shift+2 { set-dynamic-cast-monitor; }
+    Alt+Shift+3 { spawn "bash" "-c" "niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id)"; }
+    // Alt+Shift+3 { spawn "bash" "-c" "niri msg action set-dynamic-cast-window --id $(niri msg --json focused-window | jq .id)"; }
+    Alt+Shift+4 { spawn "bash" "-c" "niri msg action set-dynamic-cast-window --id $(niri msg --json windows | jq '.[] | select(.app_id | startswith(\"steam_app_\")) | .id')"; }
 
     Mod+1 { focus-workspace 2; }
     Mod+2 { focus-workspace 3; }
@@ -580,11 +748,12 @@ binds {
     // Expel the bottom window from the focused column to the right.
     Mod+Period { expel-window-from-column; }
 
-    // Mod+R { switch-preset-column-width; }
+    Mod+Z { switch-preset-column-width; }
     // Mod+Shift+R { switch-preset-window-height; }
     // Mod+Ctrl+R { reset-window-height; }
-    Mod+Z { maximize-column; }
+    // Mod+Z { maximize-column; }
     Mod+Q { fullscreen-window; }
+    Mod+F11 { toggle-windowed-fullscreen; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
@@ -603,16 +772,18 @@ binds {
     // * adjust width as a percentage of screen width: "-10%" or "+10%"
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Ctrl+H       { set-column-width "-10%"; }
-    Mod+Ctrl+L       { set-column-width "+10%"; }
-    Mod+Ctrl+Shift+H { set-column-width "-5%"; }
-    Mod+Ctrl+Shift+L { set-column-width "+5%"; }
+    Mod+Ctrl+H       { set-column-width "-1%"; }
+    Mod+Ctrl+L       { set-column-width "+1%"; }
+    Mod+Ctrl+Shift+H { set-column-width "-10%"; }
+    Mod+Ctrl+Shift+L { set-column-width "+10%"; }
+    // Mod+Ctrl+Shift+H { set-column-width "-10%"; }
+    // Mod+Ctrl+Shift+L { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Ctrl+K       { set-window-height "-10%"; }
-    Mod+Ctrl+J       { set-window-height "+10%"; }
-    Mod+Ctrl+Shift+K { set-window-height "-5%"; }
-    Mod+Ctrl+Shift+J { set-window-height "+5%"; }
+    Mod+Ctrl+K       { set-window-height "-2%"; }
+    Mod+Ctrl+J       { set-window-height "+2%"; }
+    Mod+Ctrl+Shift+K { set-window-height "-10%"; }
+    Mod+Ctrl+Shift+J { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
     Mod+F       { toggle-window-floating; }
@@ -647,9 +818,13 @@ binds {
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     // Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
+    // Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+}
+
+hotkey-overlay {
+    skip-at-startup
 }
