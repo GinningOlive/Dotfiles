@@ -1,0 +1,11 @@
+{
+  "osd": {
+    "enabled": true,
+    "timeout": 1500,
+    "position": "top",
+    "volume": {
+      "high": 100,
+      "max": 100
+    }
+  }
+}
